@@ -1,6 +1,6 @@
 {
   "name": "blackheart",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Art.",
   "main": "main.js",
   "scripts": {
@@ -14,7 +14,6 @@
   "license": "Public Domain",
   "dependencies": {
     "jade": "~0.30.0",
-    "stylus": "~0.32.1",
-    "hapi": "~1.4.0"
+    "stylus": "~0.32.1"
   }
 }

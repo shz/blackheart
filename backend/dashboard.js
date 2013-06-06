@@ -1,13 +1,5 @@
 exports.handlers = [];
 
-var main = function() {
-  this.reply.view('dashboard', {});
+exports.handler = function(req, res, helpers) {
+  helpers.template('dashboard');
 };
-
-exports.handlers.push({
-  method: 'GET',
-  path: '/',
-  config: {
-    handler: main
-  }
-});

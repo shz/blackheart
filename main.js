@@ -1,43 +1,30 @@
-var Hapi = require('hapi')
-  , backend = require('./backend/backend')
+var http = require('http')
+  , config = require('./config')
+  , creation = require('./backend/creation')
+  , dashboard = require('./backend/dashboard')
   , frontend = require('./frontend/frontend')
+  , helpers = require('./helpers')
   ;
 
-var debug = true; // TODO - Make not true in production
-var port = parseInt(process.argv[2] || 8000);
-var host = '0.0.0.0';
 console.log('Blackheart ' + require('./package.json').version);
 
-var server = Hapi.createServer(host, port, {
-  router: {
-    isCaseSensitive: false
-  },
-  views: {
-    path: 'frontend/templates',
-    isCached: !debug,
-    engines: {
-      jade: 'jade'
-    }
-  }
+// HTTP
+var server = new http.Server();
+server.on('request', function(req, res) {
+  for (var i in routes)
+    if (req.url.match(new RegExp(i)))
+      return routes[i](req, res, helpers.make(req, res));
+
+  // Default case: 404 at them
+  helpers.make(req, res).template('404', 404);
 });
-
-// Backend
-server.route(backend.init());
-console.log('Backend initialized');
-
-// Frontend
-server.route(frontend.init());
-console.log('Frontend initialized');
-
-// 404 Handlers
-server.route({
-  method: '*',
-  path: '/{p*}',
-  handler: function() {
-    this.reply.view('404');
-  }
-});
-
-server.start();
-console.log('Listening on ' + host + ':' + port);
+server.listen(config.port, config.host);
+console.log('Listening on ' + config.host + ':' + config.port);
 console.log('');
+
+// Routes
+var routes =
+{ '^/$': dashboard.handler
+, '^/create$': creation.handler
+, '^/frontend/': frontend.handler
+};

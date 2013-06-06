@@ -1,29 +1,24 @@
-var makeHandler = function(pub, pri) {
-  return {
-    method: 'GET',
-    path: '/' + pub + '/{path*}',
-    handler: {
-      directory: {
-        path: './frontend/' + pri + '/',
-        listing: false
-      }
-    }
-  };
+var cache = {};
+
+var serve = function(res, path) {
+
 };
 
-var compileStylus = function() {
-  console.log('TODO - Compile Stylus');
-};
+exports.handler = function(req, res) {
+  // Build/sanitize
+  var path = req.url.substr(0, '/frontend/'.length);
+  path = path.replace(/\.\./g, '')
+             .replace(/\/\//g, '/')
+             .replace(/^\//, '')
+             ;
 
-var compileJs = function() {
-  console.log('TODO - Compile JS');
-};
+  // Serve directly from cache if possible
+  if (cache.hasOwnProperty(path)) {
+    serve(res, path);
 
-exports.init = function() {
-  compileStylus();
-  compileJs();
+  // Build it up if needed
+  } else {
+    // TODO
+  }
 
-  return [ makeHandler('image', 'image')
-         , makeHandler('script', 'script')
-         ];
 };
