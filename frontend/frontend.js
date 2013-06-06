@@ -1,6 +1,7 @@
 var fs = require('fs')
   , fsPath = require('path')
   , jade = require('jade')
+  , stylus = require('stylus')
   , config = require('../config')
   ;
 
@@ -25,8 +26,16 @@ var convertContent = function(path, content) {
         client: true
       }));
       break;
+
     case 'styl':
-      // TODO
+      stylus.render(content.toString(), {
+        filename: path,
+        paths: [] // TODO - extra import paths?
+      }, function(err, css) {
+        if (err)
+          throw err;
+        content = new Buffer(css);
+      });
       break;
   }
 
@@ -78,14 +87,14 @@ exports.handler = function(req, res) {
              .replace(/\/\//g, '/')
              .replace(/^\//, '')
              ;
+  var fileName = fsPath.join.apply(fsPath, ['.', 'frontend'].concat(path.split('/')));
 
   // Serve directly from cache if possible
-  if (cache.hasOwnProperty(path)) {
-    serve(res, path);
+  if (cache.hasOwnProperty(fileName)) {
+    serve(res, fileName);
 
   // Build it up if needed
   } else {
-    var fileName = fsPath.join.apply(fsPath, ['.', 'frontend'].concat(path.split('/')));
     fs.readFile(fileName, function(err, data) {
       if (err) {
         console.log('Error reading static file', fileName);
@@ -93,17 +102,17 @@ exports.handler = function(req, res) {
         return fail(req, res);
       }
       try {
-        cache[path] = convertContent(path, data);
+        cache[fileName] = convertContent(path, data);
       } catch (err) {
         console.log('Error building file', fileName);
         console.log(err.stack || err.message || err);
         return fail(req, res);
       }
-      serve(res, path);
+      serve(res, fileName);
 
       // In debug mode, reload assets constantly
       if (config.debug)
-        delete cache[path];
+        delete cache[fileName];
     });
   }
 
