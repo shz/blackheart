@@ -6,15 +6,15 @@ var jade = require('jade')
 
 var templateCache = {};
 
-var fail = function(res) {
+var fail = function(req, res) {
   console.log(500, req.url);
 
   var message = "Catastrophic failure."
-  req.writeHead(500, {
+  res.writeHead(500, {
     'Content-Type': 'text/plain; charset=utf-8',
     'Content-Length': Buffer.byteLength(message, 'utf8')
   });
-  req.end(message);
+  res.end(message);
 };
 
 exports.make = function(req, res) {
@@ -36,7 +36,7 @@ exports.make = function(req, res) {
         } catch (err) {
           console.log('Error processing template', name);
           console.log(err.stack || err.message || err);
-          return fail(res);
+          return fail(req, res);
         }
 
         console.log(statusCode, req.url, '=>', fileName);
@@ -58,14 +58,14 @@ exports.make = function(req, res) {
           if (err) {
             console.log('Error reading template file', fileName);
             console.log(err.stack || err.message || err);
-            return fail(res);
+            return fail(req, res);
           }
           try {
             templateCache[name] = jade.compile(data, { filename: fileName });
           } catch (err) {
             console.log('Error compiling template file', fileName);
             console.log(err.stack || err.message || err);
-            return fail(res);
+            return fail(req, res);
           }
           cont();
 
