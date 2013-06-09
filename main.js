@@ -2,6 +2,7 @@ var http = require('http')
   , config = require('./config')
   , creation = require('./backend/creation')
   , dashboard = require('./backend/dashboard')
+  , data = require('./backend/data')
   , frontend = require('./frontend/frontend')
   , helpers = require('./helpers')
   ;
@@ -27,4 +28,5 @@ var routes =
 { '^/$': dashboard.handler
 , '^/create$': creation.handler
 , '^/frontend/': frontend.handler
+, '^/data': data.handler
 };

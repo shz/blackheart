@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# V1 - CAPTAIN PLANET SUPREME
+
+# HTML
+
+# Styles
+/frontend/style/creation.styl
+
+# Scripts
+/frontend/script/core.js
+/frontend/script/templating.js
+/frontend/script/creation.js
+
+# Images

@@ -58,26 +58,28 @@ var serve = function(res, path) {
     case 'jade':
       contentType = 'application/javascript; charset=utf-8';
       break;
+    case 'appcache':
+      contentType = 'text/cache-manifest';
+      break;
   }
 
   var content = cache[path];
-  console.log('STATIC', path, contentType);
   res.writeHead(200, {
     'Content-Type': contentType,
     'Content-Length': content.length
   });
   res.end(content);
+  console.log('200', path);
 };
 
 var fail = function(req, res) {
-  console.log(500, req.url);
-
   var message = "Catastrophic failure."
   res.writeHead(500, {
     'Content-Type': 'text/plain; charset=utf-8',
     'Content-Length': Buffer.byteLength(message, 'utf8')
   });
   res.end(message);
+  console.log(500, req.url);
 };
 
 exports.handler = function(req, res) {

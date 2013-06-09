@@ -7,14 +7,13 @@ var jade = require('jade')
 var templateCache = {};
 
 var fail = function(req, res) {
-  console.log(500, req.url);
-
   var message = "Catastrophic failure."
   res.writeHead(500, {
     'Content-Type': 'text/plain; charset=utf-8',
     'Content-Length': Buffer.byteLength(message, 'utf8')
   });
   res.end(message);
+  console.log(500, req.url);
 };
 
 exports.make = function(req, res) {
@@ -39,12 +38,12 @@ exports.make = function(req, res) {
           return fail(req, res);
         }
 
-        console.log(statusCode, req.url, '=>', fileName);
         res.writeHead(statusCode, {
           'Content-Type': 'text/html; charset=utf-8',
           'Content-Length': Buffer.byteLength(result, 'utf8')
         });
         res.end(result);
+        console.log(statusCode, req.url, '=>', fileName);
       };
 
       // Attempt to use stored templated
