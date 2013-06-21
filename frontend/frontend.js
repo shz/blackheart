@@ -15,17 +15,21 @@ var getFile = function(path) {
   return (path.match(/([^\/]+)(?:\.\w*)$/) || [])[1] || 'undefined';
 };
 
-var convertContent = function(path, content) {
+var convertContent = function(path, content, callback) {
   var ext = getExtension(path);
 
   switch (ext) {
     case 'jade':
-      content = new Buffer('bh.templates["' + getFile(path) + '"] = ' + jade.compile(content.toString(), {
-        filename: path,
-        compileDebug: config.debug,
-        client: true
-      }));
-      break;
+      try {
+        content = new Buffer('bh.templates["' + getFile(path) + '"] = ' + jade.compile(content.toString(), {
+          filename: path,
+          compileDebug: config.debug,
+          client: true
+        }));
+        return callback(undefined, content);
+      } catch (err) {
+        return callback(err);
+      }
 
     case 'styl':
       stylus.render(content.toString(), {
@@ -34,12 +38,13 @@ var convertContent = function(path, content) {
       }, function(err, css) {
         if (err)
           throw err;
-        content = new Buffer(css);
+        callback(Buffer(css));
       });
       break;
-  }
 
-  return content;
+    default:
+      return callback(content);
+  }
 };
 
 var serve = function(res, path) {
@@ -50,7 +55,7 @@ var serve = function(res, path) {
       contentType = 'image/png';
       break;
     case 'styl':
-      contentType = 'text/css; charset=utf-8';
+      contentType =' text/css; charset=utf-8';
       break;
     case 'js':
       contentType = 'application/javascript; charset=utf-8';
