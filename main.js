@@ -16,8 +16,9 @@ server.on('request', function(req, res) {
     if (req.url.match(new RegExp(i)))
       return routes[i](req, res, helpers.make(req, res));
 
-  // Default case: 404 at them
-  helpers.make(req, res).template('404', 404);
+  // Default case: redirect to the dashboard
+  res.writeHead(301, {'Location': 'http://' + req.headers.host + '/'});
+  res.end();
 });
 server.listen(config.port, config.host);
 console.log('Listening on ' + config.host + ':' + config.port);
