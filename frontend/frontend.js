@@ -36,14 +36,12 @@ var convertContent = function(path, content, callback) {
         filename: path,
         paths: [] // TODO - extra import paths?
       }, function(err, css) {
-        if (err)
-          throw err;
-        callback(Buffer(css));
+        return callback(err, css ? Buffer(css) : undefined);
       });
       break;
 
     default:
-      return callback(content);
+      return callback(undefined, content);
   }
 };
 
@@ -108,19 +106,21 @@ exports.handler = function(req, res) {
         console.log(err.stack || err.message || err);
         return fail(req, res);
       }
-      try {
-        cache[fileName] = convertContent(path, data);
-      } catch (err) {
-        console.log('Error building file', fileName);
-        console.log(err.stack || err.message || err);
-        return fail(req, res);
-      }
-      serve(res, fileName);
 
-      // In debug mode, reload assets constantly
-      if (config.debug)
-        delete cache[fileName];
+      convertContent(path, data, function(err, data) {
+        if (err) {
+          console.log('Error building file', fileName);
+          console.log(err.stack || err.message || err);
+          return fail(req, res);
+        }
+
+        cache[fileName] = data;
+        serve(res, fileName);
+
+        // In debug mode, reload assets constantly
+        if (config.debug)
+          delete cache[fileName];
+      });
     });
   }
-
 };
