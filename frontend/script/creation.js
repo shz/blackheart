@@ -1,2 +1,1 @@
 bh.creation = {};
-'hello world';
