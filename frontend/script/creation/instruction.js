@@ -1,5 +1,3 @@
 bh.creation.instruction = function() {
-  return [
-
-         ];
+  return bh.templates.instruction();
 };

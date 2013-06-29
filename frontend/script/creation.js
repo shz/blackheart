@@ -2,8 +2,8 @@ bh.creation = {};
 
 (function() {
   var stack = [];
-  var procedure = [ 'intrusion'
-                  , 'instruction'
+  var procedure = [ 'initiation'
+                  , 'intrusion'
                   , 'completion'
                   , 'expulsion'
                   ];
@@ -13,7 +13,11 @@ bh.creation = {};
     (stack.pop() || {}).className = 'performed';
     var next = document.createElement('div');
     next.id = procedure.shift();
-    bh.creation[next.id]().forEach(function(el) { next.appendChild(el) });
+    var content = bh.creation[next.id]();
+    if (typeof content == 'string')
+      next.innerHTML = content;
+    else
+      content.forEach(function(el) { next.appendChild(el) });
     stack.push(next);
     document.body.appendChild(next);
     next.offsetLeft;

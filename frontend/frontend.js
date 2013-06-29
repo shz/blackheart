@@ -64,6 +64,12 @@ var serve = function(res, path) {
     case 'appcache':
       contentType = 'text/cache-manifest';
       break;
+    case 'svg':
+      contentType = 'image/svg+xml';
+      break;
+    case 'otf':
+      contentType = 'font/opentype';
+      break;
   }
 
   var content = cache[path];

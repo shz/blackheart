@@ -1,9 +1,15 @@
-padding = 20px
+padding = 0px
 width = 768px - padding
 height = 1024px - padding
 
-title-font = "Lucida Grande", "Lucida Sans", sans-serif
-body-font = "Helvetica Neue", "Helvetica", "Arial", sans-serif
+orange = rgb(255, 85, 50)
+
+title-font = collator, sans-serif;
+body-font = collator, sans-serif;
+
+@font-face
+  font-family 'collator'
+  src url('/frontend/font/collator.otf')
 
 html
   background-color white
@@ -22,22 +28,21 @@ body
 
 h1
   font-family title-font
-  font-weight bold
+  font-weight normal
   font-size 32pt
   text-transform uppercase
 
 h2
   font-family title-font
-  font-weight bold
+  font-weight normal
   font-size 28pt
   text-transform uppercase
 
 h3
   font-family title-font
-  font-weight 300
+  font-weight normal
   font-size 16pt
 
 p
   font-family body-font
-  font-weight 300
   font-size 13pt
