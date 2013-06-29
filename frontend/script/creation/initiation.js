@@ -27,7 +27,7 @@ bh.creation.initiation = function() {
       animation2.className = ''
     }
 
-    setTimeout(cycle, 6000);
+    setTimeout(cycle, 2600);
   };
   setTimeout(cycle, 2000);
 
