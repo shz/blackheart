@@ -1,6 +1,25 @@
 <!doctype html>
 <html>
-  <head></head>
+  <head>
+    <style>
+    svg polygon {
+      transition: all 1s;
+      -webkit-transform: none;
+    }
+    svg polygon.nekkid0 {
+      -webkit-transform: translateX(300px) scale(0);
+    }
+    svg polygon.nekkid1 {
+      -webkit-transform: translateY(300px) scale(0);
+    }
+    svg polygon.nekkid2 {
+      -webkit-transform: translateX(-300px) scale(0);
+    }
+    svg polygon.nekkid3 {
+      -webkit-transform: translateY(-300px) scale(0);
+    }
+    </style>
+  </head>
   <body>
     <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
     <script>
@@ -177,6 +196,26 @@
         // Fill out the interior triangles
         fillSection(section, edgeCount, 0, 0);
       }
+
+      // Util
+      var shuffle = function(o) {
+        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+      };
+
+      // Trigger animation
+      var polygons = Array.prototype.slice.call(document.querySelectorAll('svg polygon'));
+      polygons = shuffle(polygons);
+      var dir = '0';
+      for (var i=0; i<polygons.length; i++) {
+        polygons[i].setAttribute('class', 'nekkid' + dir);
+        if (++dir > 3)
+          dir = 0;
+        setTimeout((function(i) { return function() {
+          polygons[i].setAttribute('class', '');
+        }})(i), i * 10);
+      }
+      svg.offsetLeft;
     </script>
   </body>
 </html>
