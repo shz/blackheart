@@ -70,6 +70,9 @@ var serve = function(res, path) {
     case 'otf':
       contentType = 'font/opentype';
       break;
+    case 'html':
+      contentType = 'text/html; charset=utf-8';
+      break;
   }
 
   var content = cache[path];
