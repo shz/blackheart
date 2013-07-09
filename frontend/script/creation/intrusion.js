@@ -6,26 +6,48 @@ bh.creation.intrusion = function() {
 
   // Run the initial infinity animation
   setTimeout(function() {
-    var o = $('#intrusion .first object');
-    var p = $('#intrusion .first p');
-    o.setAttribute('data', o.getAttribute('data-data'));
-    o.onload = function() {
-      setTimeout(function() {
-        p.className = 'visible';
+
+    // Animate in the hex
+    var hex = $('#intrusion .first .hex');
+    hex.className = 'hex in';
+
+    setTimeout(function() {
+      var p = $('#intrusion .first p');
+      var o = document.createElement('object');
+      o.setAttribute('type', 'image/svg+xml');
+      o.setAttribute('data', '/frontend/image/infinity_path.svg');
+      hex.parentElement.insertBefore(o, hex);
+
+      o.onload = function() {
         setTimeout(function() {
-          p.className = 'visible fade';
-        }, 2000);
-        setTimeout(storyAnimation, 2750);
-      }, 1450);
-    };
+          p.className = 'visible';
+          setTimeout(function() {
+            p.className = 'visible fade';
+          }, 2000);
+
+          setTimeout(function() {
+            hex.className = 'hex in out';
+            setTimeout(storyAnimation, 800);
+          }, 2750);
+        }, 1450);
+      };
+    }, 1000);
   }, 1000);
 
   var storyAnimation = function() {
     var second = $('#intrusion .second');
     second.className += ' visible';
+    $('#intrusion .first').className += ' hidden';
 
-    // Give time for the logo to animate in
+    var hex = $('#intrusion .second .hex');
+    hex.offsetLeft;
+    hex.className += ' in';
+
+    // Give time for the hex to animate in
     var t = 1000;
+    setTimeout(function() {
+      yearEl.className = 'year visible';
+    }, t);
 
     // Bring in the text
     var yearEl = $('#intrusion .second .year');
@@ -33,13 +55,16 @@ bh.creation.intrusion = function() {
     var runYear = function() {
       yearEl.textContent = year;
 
-      if (year++ < 2045)
+      if (year++ < 2045) {
         setTimeout(runYear, 50);
-      else
-        yearEl.className = 'year visible done';
+      } else {
+        setTimeout(function() {
+          yearEl.className = 'year visible done';
+          hex.className += ' out';
+        }, 400)
+      }
     };
-    yearEl.className = 'year visible'
-    setTimeout(runYear, 600);
+    setTimeout(runYear, t);
     t += 2600;
 
     // Animate in the paragraphs

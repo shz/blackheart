@@ -70,7 +70,6 @@ body > div
 
     &.orange
       background-color orange
-      background-image url('/frontend/image/pattern-white.png')
       .img
         background-image: url('/frontend/image/skull-large-black.png'), url('/frontend/image/hex-white.png')
       h1
@@ -80,7 +79,6 @@ body > div
 
     &.white
       background-color white
-      background-image url('/frontend/image/pattern-black.png')
       .img
         background-image: url('/frontend/image/smiley-large-white.png'), url('/frontend/image/hex-black.png')
       h2
@@ -89,7 +87,6 @@ body > div
 #intrusion
   transition opacity 1s
   background-color black
-  background-image url('/frontend/image/pattern-white.png')
   text-align center
 
   > div
@@ -102,53 +99,100 @@ body > div
   .first
     width 100%
     position absolute
-    top 400px
+    top 0
     left 0
 
+    &.hidden
+      display none
+
+    .hex
+      background-image url('/frontend/image/hex-small-white.png')
+      width 243px
+      height 279px
+      position absolute
+      top 400px
+      left 263px
+      -webkit-transition -webkit-transform 1s
+      -webkit-transform rotate(-90deg) scale(0)
+      z-index 1
+
+      &.in
+        -webkit-transform rotate(0) scale(1)
+      &.out
+        -webkit-transition -webkit-transform 0.8s
+        -webkit-transform rotate(180deg) scale(6)
+
     object
+      position absolute
+      top 492px
+      left 282px
       z-index 2
     p
       transition all 0.4s
       opacity 0
-      -webkit-transform translateY(-20px)
+      -webkit-transform translate3d(0, -20px, 0)
       color white
       text-transform uppercase
       font-size 11pt
       z-index 1
+      position absolute
+      top 700px
+      width 100%
+      left 0
 
       &.visible
         opacity 1
-        -webkit-transform none
+        -webkit-transform translate3d(0, 0, 0)
 
       &.fade
         opacity 0
 
   .second
     padding-top 120px
+    height 100%
+    width 100%
+    background-color white
+    display none
 
-    .logo
-      transition opacity 0.6s
-      opacity 0
+    &.visible
+      display block
+
+    .hex
+      background-image url('/frontend/image/hex-small-black.png')
+      width 243px
+      height 279px
+      position absolute
+      top 400px
+      left 263px
+      -webkit-transition -webkit-transform 1s
+      -webkit-transform rotate(-90deg) scale(0)
+      z-index 1
+
+      &.in
+        -webkit-transform rotate(0) scale(1)
+      &.out
+        -webkit-transform rotate(90deg) scale(6)
 
     .year
       position absolute
-      top 370px
-      left 50px
+      top 547px
+      left 290px
       color white
-      font-size 260px
+      font-size 80px
       text-align left
-      -webkit-transform translateX(768px)
-      opacity 1
+      opacity 0
+      z-index 2
+      line-height 1px
 
       &.visible
-        transition -webkit-transform 0.6s
-        -webkit-transform none
+        transition opacity 0.1s
+        opacity 1
 
       &.done
-        transition color 0.6s, opacity 0.6s 1s, -webkit-transform 0.6s 1s
-        opacity 0
+        transition all 0.6s
         color orange
-        -webkit-transform scale(0.8)
+        // font-size 260px
+        // -webkit-transform translateX(-236px)
 
     p
       transition opacity 1s, color 2s
@@ -161,9 +205,6 @@ body > div
       &.orange
         color orange
 
-    &.visible
-      .logo
-        opacity 1
 
 
 .selection
