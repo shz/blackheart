@@ -53,9 +53,11 @@ bh.creation.intrusion = function() {
     var yearEl = $('#intrusion .second .year');
     var year = 2013;
     var runYear = function() {
-      yearEl.textContent = year;
+      yearEl.textContent = year++;
 
-      if (year++ < 2045) {
+      if (year == 2014) {
+        setTimeout(runYear, 550);
+      } else if (year <= 2045) {
         setTimeout(runYear, 50);
       } else {
         setTimeout(function() {
@@ -65,39 +67,45 @@ bh.creation.intrusion = function() {
       }
     };
     setTimeout(runYear, t);
-    t += 2600;
+    t += 3500;
 
     // Animate in the paragraphs
-    var q = document.querySelectorAll('#intrusion .second p');
-    for (var i=0; i<q.length; i++) {
-      (function(i) {
-        setTimeout(function() {
-          q[i].className += ' visible';
-        }, t);
-      })(i);
-      t += 2400;
-    }
+    setTimeout(function() {
+      $('#intrusion .second .text').className += ' visible';
+    }, t);
+    t += 2500;
 
-    // Bind to clicking one the ending text has started to appear
+    // Bind to clicking once the ending text has started to appear
     setTimeout(function() {
       var handler = function(e) {
         e.preventDefault();
-        bh.creation.next();
+
+        $('#intrusion .second .text').className += ' hidden';
+        $('#intrusion .second .orange-block').className += ' visible';
+
+        setTimeout(function() {
+          $('#intrusion .second .hex').className += ' gone';
+          $('#intrusion .third').className += ' visible';
+          $('#intrusion .second .orange-block').className += ' up';
+          document.body.offsetLeft;
+
+          setTimeout(bh.creation.next, 1400);
+        }, 700);
       };
       d.addEventListener('touchstart', handler, false);
       d.addEventListener('click', handler, false);
-    }, t - 2400);
+    }, t);
 
     // Pulse the ending text
-    i--;
     setTimeout(function() {
-      q[i].className = 'visible orange';
+      var el = $('#intrusion .second .text p:last-child');
+      el.className = 'visible orange';
       setInterval(function() {
-        if (q[i].className == 'visible orange')
-          q[i].className = 'visible';
+        if (el.className == 'visible orange')
+          el.className = 'visible';
         else
-          q[i].className = 'visible orange';
-      }, 2200);
+          el.className = 'visible orange';
+      }, 1200);
     }, t);
   };
 

@@ -17,18 +17,16 @@ body > div
     opacity 1
     z-index 100
 
-.logo
-  background-image url('/frontend/image/logo-orange.png')
+.selection-header
   position absolute
-  top 30px
-  right 30px
-  color orange
-  padding-top 44px
+  left 0
+  top 0
+  width 100%
+  background-color orange
+  background-image url('/frontend/image/logo-black.png')
+  background-position 470px 40px
   background-repeat no-repeat
-  background-position top right
-
-  &:after
-    content "Human Preservation Initiative"
+  height 160px
 
 #initiation
   text-align center
@@ -86,7 +84,7 @@ body > div
 
 #intrusion
   transition opacity 1s
-  background-color black
+  background-color white
   text-align center
 
   > div
@@ -98,9 +96,11 @@ body > div
 
   .first
     width 100%
+    height 100%
     position absolute
     top 0
     left 0
+    background-color black
 
     &.hidden
       display none
@@ -121,6 +121,8 @@ body > div
       &.out
         -webkit-transition -webkit-transform 0.8s
         -webkit-transform rotate(180deg) scale(6)
+      &.gone
+        display none
 
     object
       position absolute
@@ -151,8 +153,8 @@ body > div
     padding-top 120px
     height 100%
     width 100%
-    background-color white
     display none
+    z-index 4
 
     &.visible
       display block
@@ -172,6 +174,8 @@ body > div
         -webkit-transform rotate(0) scale(1)
       &.out
         -webkit-transform rotate(90deg) scale(6)
+      &.gone
+        display none
 
     .year
       position absolute
@@ -189,23 +193,69 @@ body > div
         opacity 1
 
       &.done
-        transition all 0.6s
+        transition color 0.6s, -webkit-transform 0.6s 1s
         color orange
         // font-size 260px
-        // -webkit-transform translateX(-236px)
+        -webkit-transform translateY(-600px)
 
-    p
-      transition opacity 1s, color 2s
+    .orange-block
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      background-color orange
       opacity 0
-      color white
-      font-size 40px
+      transition opacity 0.6s
+      z-index 3
 
       &.visible
         opacity 1
-      &.orange
-        color orange
 
+      &.up
+        transition -webkit-transform 0.6s, opacity 0.6s 0.6s
+        -webkit-transform translateY(-864px)
+        opacity 0
 
+    .text
+      position relative
+      z-index 4
+      -webkit-transform translateY(900px)
+      transition -webkit-transform 0.6s
+      opacity 1
+
+      &.visible
+        -webkit-transform none
+
+      &.hidden
+        transition opacity 0.6s
+        opacity 0
+
+      p
+        transition opacity 1s, color 1s
+        opacity 0
+        color white
+        font-size 40px
+
+        &.visible
+          opacity 1
+        &.orange
+          color orange
+
+  .third
+    display none
+    transition opacity 0.4s
+    background-image url('/frontend/image/bg.png')
+    width 100%
+    height 100%
+    background-color white
+    z-index 2
+    position absolute
+    top 0
+    left 0
+
+    &.visible
+      display block
 
 .selection
   .name
