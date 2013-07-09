@@ -96,7 +96,7 @@ var fail = function(req, res) {
 
 exports.handler = function(req, res) {
   // Build/sanitize
-  var path = req.url.substr('/frontend/'.length);
+  var path = req.url.substr('/frontend/'.length).split('?')[0];
   path = path.replace(/\.\./g, '')
              .replace(/\/\//g, '/')
              .replace(/^\//, '')
