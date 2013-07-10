@@ -9,14 +9,36 @@
   h1.name= name
 
   .pieces
-    a(href='#')
-      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '1.png')
-    a(href='#')
-      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '2.png')
-    a(href='#')
-      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '3.png')
-    a(href='#')
-      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '4.png')
+    a.flip-hex(href='#')
+      .back
+        img(src='/frontend/image/icons/' + name.toLowerCase() + '1.png')
+        .red
+      .front
+    a.flip-hex(href='#')
+      .back
+        img(src='/frontend/image/icons/' + name.toLowerCase() + '2.png')
+        .red
+      .front
+    a.flip-hex(href='#')
+      .back
+        img(src='/frontend/image/icons/' + name.toLowerCase() + '3.png')
+        .red
+      .front
+    a.flip-hex(href='#')
+      .back
+        img(src='/frontend/image/icons/' + name.toLowerCase() + '4.png')
+        .red
+      .front
+    a.flip-hex(href='#')
+      .back
+        img(src='/frontend/image/icons/' + name.toLowerCase() + '5.png')
+        .red
+      .front
+    a.flip-hex(href='#')
+      .back
+        img(src='/frontend/image/icons/' + name.toLowerCase() + '6.png')
+        .red
+      .front
 
   .counter
     .s1

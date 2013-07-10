@@ -17,6 +17,8 @@ body > div
     opacity 1
     z-index 100
 
+// Global styling
+
 .selection-header
   position absolute
   left 0
@@ -27,6 +29,31 @@ body > div
   background-position 470px 40px
   background-repeat no-repeat
   height 160px
+
+.flip-hex
+  position relative
+
+  .front, .back
+    -webkit-backface-visibility hidden
+    transition -webkit-transform 0.4s
+    width 100%
+    height 100%
+    position absolute
+    top 0
+    left 0
+
+  .front
+    -webkit-transform rotateY(0deg)
+  .back
+    -webkit-transform rotateY(180deg)
+
+  &.flipped
+    .front
+      -webkit-transform rotateY(180deg)
+    .back
+      -webkit-transform rotateY(360deg)
+
+// Section styling
 
 #initiation
   text-align center
@@ -281,14 +308,20 @@ body > div
     line-height 1
     color white
     text-transform none
-    transition opacity 0.4s 3s !important
+    -webkit-transform translateY(-200px)
+    transition -webkit-transform 0.4s, opacity 0.2s !important
+
+    &.visible
+      -webkit-transform none
 
   .instructions
+    z-index 2
     opacity 1
     position absolute
     top 440px
     width 440px
     left 164px
+    pointer-events none
 
     &.hidden
       transition opacity 0.6s
@@ -309,23 +342,36 @@ body > div
     width 120px
     height 140px
     margin-left -60px
-    -webkit-transform scale(1.5)
     display none
 
     &.visible
       display block
 
+    back = -60px
+    backstart = -800px
+    baserot = -240deg
+
     &.regular
-      -webkit-transition -webkit-transform 0.4s
-      -webkit-transform none
+      div.s1
+        -webkit-transform rotate(0deg + baserot) translateX(back) scale(-1, 1)
+      div.s2
+        -webkit-transform rotate(60deg + baserot) translateX(back) scale(-1, 1)
+      div.s3
+        -webkit-transform rotate(120deg + baserot) translateX(back) scale(-1, 1)
+      div.s4
+        -webkit-transform rotate(180deg + baserot) translateX(back) scale(-1, 1)
+      div.s5
+        -webkit-transform rotate(240deg + baserot) translateX(back) scale(-1, 1)
+      div.s6
+        -webkit-transform rotate(300deg + baserot) translateX(back) scale(-1, 1)
 
     div
-      width 60px
-      height 70px
+      width 120px
+      height 140px
       background-image url('/frontend/image/timer-segment.png')
       position absolute
-      top 36px
-      left 30px
+      top 70px
+      left 0px
       -webkit-transition all 0.4s
       opacity 1
 
@@ -333,68 +379,86 @@ body > div
         opacity 0
 
       &.s1
-        -webkit-transform rotate(0deg) translateX(-32px) scale(1)
+        -webkit-transform rotate(0deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        opacity 0.8
         &.done
-          -webkit-transform rotate(0deg) translateX(-32px) scale(0)
+          -webkit-transform rotate(0deg + baserot) translateX(back) scale(0)
       &.s2
-        -webkit-transform rotate(60deg) translateX(-32px) scale(1)
+        -webkit-transform rotate(60deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        opacity 0.9
         &.done
-          -webkit-transform rotate(60deg) translateX(-32px) scale(0)
+          -webkit-transform rotate(60deg + baserot) translateX(back) scale(0)
       &.s3
-        -webkit-transform rotate(120deg) translateX(-32px) scale(1)
+        -webkit-transform rotate(120deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        opacity 1
         &.done
-          -webkit-transform rotate(120deg) translateX(-32px) scale(0)
+          -webkit-transform rotate(120deg + baserot) translateX(back) scale(0)
       &.s4
-        -webkit-transform rotate(180deg) translateX(-32px) scale(1)
+        -webkit-transform rotate(180deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        opacity 0.75
         &.done
-          -webkit-transform rotate(180deg) translateX(-32px) scale(0)
+          -webkit-transform rotate(180deg + baserot) translateX(back) scale(0)
       &.s5
-        -webkit-transform rotate(240deg) translateX(-32px) scale(1)
+        -webkit-transform rotate(240deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        opacity 0.6
         &.done
-          -webkit-transform rotate(240deg) translateX(-32px) scale(0)
+          -webkit-transform rotate(240deg + baserot) translateX(back) scale(0)
       &.s6
-        -webkit-transform rotate(300deg) translateX(-32px) scale(1)
+        -webkit-transform rotate(300deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        opacity 0.5
         &.done
-          -webkit-transform rotate(300deg) translateX(-32px) scale(0)
+          -webkit-transform rotate(300deg + baserot) translateX(back) scale(0)
 
   .pieces
+    z-index 1
+
     a
-      background-image url('/frontend/image/black-tile.png')
-      width 288px
-      height 342px
+      width 243px
+      height 279px
       position absolute
       text-align center
-      -webkit-transform translateY(-1000px)
 
       &:nth-child(1)
-        top 120px
-        left 30px
-        right auto
+        top 242px
+        left 136px
       &:nth-child(2)
-        top 120px
-        left auto
-        right 30px
+        top 461px
+        left 10px
       &:nth-child(3)
-        top 630px
-        left 30px
-        right auto
+        top 678px
+        left 136px
       &:nth-child(4)
-        top 630px
-        right 30px
-        left auto
+        top 679px
+        left 390px
+      &:nth-child(5)
+        top 461px
+        left 516px
+      &:nth-child(6)
+        top 242px
+        left 390px
 
-    &.visible
-      a
-        -webkit-transform none
+      .back
+        background-image url('/frontend/image/hex-small-black.png')
+        img
+          position absolute
+          left 0
+          top 0
+          z-index 2
+        .red
+          width 100%
+          height 100%
+          position absolute
+          background-image url('/frontend/image/hex-small-red.png')
+          opacity 0
+          z-index 1
 
-        &.gone
-          -webkit-transform translateY(1000px)
+      &.selected
+        .back
+          background-image url('/frontend/iamge/hex-small-white.png')
 
-        &:nth-child(1)
-          -webkit-transition -webkit-transform 0.5s 0s
-        &:nth-child(2)
-          -webkit-transition -webkit-transform 0.5s 0.2s
-        &:nth-child(3)
-          -webkit-transition -webkit-transform 0.5s 0.4s
-        &:nth-child(4)
-          -webkit-transition -webkit-transform 0.5s 0.6s
+          .red
+            transition opacity 0.4s
+            opacity 1
+
+      .front
+        background-image url('/frontend/image/hex-small-white.png')

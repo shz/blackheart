@@ -7,8 +7,12 @@ bh.creation = {};
                   // , 'completion'
                   // , 'expulsion'
 
+                  , 'anger'
                   , 'love'
+                  , 'fear'
                   , 'sadness'
+                  , 'joy'
+                  , 'surprise'
                   ];
 
 
