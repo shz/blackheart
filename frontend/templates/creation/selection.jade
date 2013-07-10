@@ -1,16 +1,22 @@
 .selection
-  .logo
+  .selection-header
+
+  .instructions
+    h2 Choose the image that best represents
+    h2.name= name
+    h2 Before time runs out
+
   h1.name= name
 
   .pieces
     a(href='#')
-      img(src='/frontend/image/creation/' + name.toLowerCase() + '1.png')
+      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '1.png')
     a(href='#')
-      img(src='/frontend/image/creation/' + name.toLowerCase() + '2.png')
+      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '2.png')
     a(href='#')
-      img(src='/frontend/image/creation/' + name.toLowerCase() + '3.png')
+      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '3.png')
     a(href='#')
-      img(src='/frontend/image/creation/' + name.toLowerCase() + '4.png')
+      img(src='/frontend/image/icons/creation/' + name.toLowerCase() + '4.png')
 
   .counter
     .s1

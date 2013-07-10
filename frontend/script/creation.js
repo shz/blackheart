@@ -3,9 +3,9 @@ bh.creation = {};
 (function() {
   var stack = [];
   var procedure = [ 'initiation'
-                  , 'intrusion'
-                  , 'completion'
-                  , 'expulsion'
+                  // , 'intrusion'
+                  // , 'completion'
+                  // , 'expulsion'
 
                   , 'love'
                   , 'sadness'

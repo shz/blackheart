@@ -1,10 +1,16 @@
 (function() {
   var selection = function(name) {
+
     return function() {
       var w = document.createElement('div');
       w.innerHTML = bh.templates.selection({
         name: name
       });
+
+      var $ = function(sel) {
+        console.log('#' + w.parentElement.id + ' ' + sel);
+        return document.querySelectorAll('#' + w.parentElement.id + ' ' + sel);
+      };
 
       var id = null;
       var done = false;
@@ -24,9 +30,20 @@
         }
       };
 
+      // Show instructions
+      setTimeout(function() {
+        var names = $('.name');
+        for (var i=0; i<names.length; i++) {
+          names[i].className += ' visible';
+        }
+
+        setTimeout(function() {
+          $('.instructions')[0].className += ' hidden';
+        }, 3000);
+      }, 1000);
+
       setTimeout(function() {
         id = w.parentElement.id;
-        document.querySelector('#' + id + ' .name').className = 'name visible';
         document.querySelector('#' + id + ' .pieces').className = 'pieces visible';
 
         setTimeout(function() {
@@ -56,7 +73,7 @@
             finish(-1);
           }, 6000 + 400);
         }, 3000);
-      }, 1000);
+      }, 1000 + 10000);
 
       return [w];
     };
