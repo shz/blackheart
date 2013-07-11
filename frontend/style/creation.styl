@@ -591,14 +591,56 @@ body > div
     top 0
     left 0
     opacity 0
-    background-color rgba(red, 0.1)
 
     &.visible
       transition opacity 0.6s
       opacity 1
 
     .header
-
+      .vert
+        position absolute
+        top 20px
+        right 120px
+        width 1px
+        height 100px
+        background-color black
+      .horiz
+        position absolute
+        top 70px
+        left 20px
+        width 768px - 20px - 20px - 120px
+        height 1px
+        background-color black
+      .a
+        position absolute
+        top 50px
+        right 140px
+        font-size 12px
+        text-transform uppercase
+      .b
+        text-transform uppercase
+        position absolute
+        top 76px
+        right 140px
+        font-size 20px
+      .c
+        position absolute
+        right 22px
+        top 130px
+        text-align center
+        font-size 10px
+      .d
+        width 88px
+        height 100px
+        position absolute
+        right 20px
+        top 20px
+        background-image url('/frontend/image/hex-presentation.png')
+        background-size 100%
+        color white
+        text-align center
+        line-height 100px
+        font-size 36px
 
     .footer
       .logo
@@ -607,9 +649,9 @@ body > div
         left 20px
         background-image url('/frontend/image/logo-presentation.png')
         background-repeat no-repeat
-        background-size 120px
-        width 120px
-        height (120px / 2.22)
+        background-size 160px
+        width 160px
+        height (160px / 2.22)
         border-right 1px solid black
         padding-right 10px
       .top
@@ -622,13 +664,13 @@ body > div
       .big
         position absolute
         top 920px
-        left 160px
+        left 200px
         text-transform uppercase
         font-size 20px
       .small
         position absolute
         top 950px
-        left 160px
+        left 200px
         font-size 10px
 
   svg

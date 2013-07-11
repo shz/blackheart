@@ -23,7 +23,7 @@ bh.creation.demonstration = function() {
       n = '0' + n;
     hash += n;
   }
-  var intensities = [3, 6]; // TODO - actual data
+  var intensities = [(Math.random() * 6)|0, (Math.random() * 6)|0]; // TODO - actual data
   var averageIntensity = 0;
   for (var i=0; i<intensities.length; i++)
     averageIntensity += intensities[i];
@@ -41,8 +41,6 @@ bh.creation.demonstration = function() {
 
     // Save the data
     bh.data.save(bh.creation.preservedData);
-
-
 
     // Pipe that data into the hexagon generator, and insert the resulting hexagon
     document.querySelector('#demonstration').appendChild(bh.hexagon(hash));
@@ -63,10 +61,10 @@ bh.creation.demonstration = function() {
     // Fade in the bg part
     setTimeout(function() {
       $('.bg')[0].className += ' visible';
-    }, 1000);
+    }, 4000);
 
     // Show the final form after a time
-    setTimeout(showForm, 4000);
+    setTimeout(showForm, 7000);
   };
 
   var showForm = function() {
@@ -104,7 +102,7 @@ bh.creation.demonstration = function() {
     for (var i=0; i<inputs.length; i++)
       inputs[i].disabled = true;
 
-    $('.bg').className = 'bg';
+    $('.bg')[0].style.display = 'none';
     $('svg')[0].style.display = 'none';
     document.querySelector('#demonstration').className += ' orange';
     $('form')[0].className = 'form';
