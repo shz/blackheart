@@ -89,7 +89,7 @@ bh.creation.intrusion = function() {
           $('#intrusion .second .orange-block').className += ' up';
           document.body.offsetLeft;
 
-          setTimeout(bh.creation.next, 1400);
+          setTimeout(bh.creation.next, 1200);
         }, 700);
       };
       d.addEventListener('touchstart', handler, false);

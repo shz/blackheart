@@ -34,7 +34,7 @@
             pieces[i].className = pieces[i].className.replace('flipped', '');
 
             if (i == 5)
-              setTimeout(bh.creation.next, 1000);
+              setTimeout(bh.creation.next, 500);
           }})(i), i * 300);
         }
       };
@@ -61,8 +61,14 @@
       // Animation pieces
 
       var showInstructions = function() {
-        $('.instructions')[0].className += ' hidden';
-        setTimeout(animateInTiles, 1000);
+        $('.instructions .flip-hex')[0].className += ' flipped';
+        setTimeout(function() {
+          $('.instructions')[0].className += ' visible';
+          setTimeout(function() {
+            $('.instructions')[0].className = 'instructions hidden';
+            setTimeout(animateInTiles, 1000);
+          }, 2000);
+        }, 1000);
       };
 
       var animateInTiles = function() {
@@ -103,7 +109,7 @@
               return;
 
             ss[i].className += ' done';
-          }})(i), (ss.length - i) * 1000);
+          }})(i), (ss.length - 1 - i) * 1000);
         }
 
         // Auto-finish if time runs out
@@ -115,7 +121,7 @@
       };
 
       // Bootstrap
-      setTimeout(showInstructions, 1000);
+      setTimeout(showInstructions, 100);
 
       return [w];
     };

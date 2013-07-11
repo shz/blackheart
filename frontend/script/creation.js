@@ -2,21 +2,32 @@ bh.creation = {};
 
 (function() {
   var stack = [];
-  var procedure = [ 'initiation'
+  var procedure = [ //'initiation'
                   // , 'intrusion'
-                  // , 'completion'
-                  // , 'expulsion'
 
-                  , 'anger'
-                  , 'love'
-                  , 'fear'
-                  , 'sadness'
-                  , 'joy'
-                  , 'surprise'
+                  // , 'anger'
+                  // , 'love'
+                  // , 'fear'
+                  // , 'sadness'
+                  // , 'joy'
+                  // , 'surprise'
+
+                  , 'completion'
+                  , 'demonstration'
+                  , 'expulsion'
                   ];
 
 
   bh.creation.next = function() {
+    // After a reasonable amount of time, remove previous entries for
+    // performance/stability.
+    var prev = document.querySelector('body > div.underway');
+    if (prev) {
+      setTimeout(function() {
+        document.body.removeChild(prev);
+      }, 2000);
+    }
+
     (stack.pop() || {}).className = 'performed';
     var next = document.createElement('div');
     next.id = procedure.shift();

@@ -1,5 +1,7 @@
 bh.creation.completion = function() {
-  return [
+  var $ = function(sel) {
+    return document.querySelectorAll('#completion ' + sel);
+  };
 
-         ];
+  return bh.templates.completion();
 };

@@ -1,20 +1,16 @@
 orange = rgb(255, 85, 50)
 
 body > div
-  transition opacity 0.6s
   position absolute
   top 0
   left 0
   width 100%
   height 100%
-  background-color #EEE
-  opacity 0
   z-index 1
   box-sizing border-box
   overflow hidden
 
   &.underway
-    opacity 1
     z-index 100
 
 // Global styling
@@ -29,6 +25,28 @@ body > div
   background-position 470px 40px
   background-repeat no-repeat
   height 160px
+
+@keyframes flip-hex-rotate-front
+  0%
+    -webkit-transform rotateY(0deg)
+    z-index 1
+  50%
+    -webkit-transform rotateY(180deg)
+    z-index 0
+  100%
+    -webkit-transform rotateY(360deg)
+    z-index 1
+
+@keyframes flip-hex-rotate-back
+  0%
+    -webkit-transform rotateY(180deg)
+    z-index 0
+  50%
+    -webkit-transform rotateY(360deg)
+    z-index 1
+  100%
+    -webkit-transform rotateY(540deg)
+    z-index 0
 
 .flip-hex
   position relative
@@ -53,66 +71,60 @@ body > div
     .back
       -webkit-transform rotateY(360deg)
 
+  &.animated
+    .front
+      -webkit-animation flip-hex-rotate-front 4s ease-in-out infinite
+    .back
+      -webkit-animation flip-hex-rotate-back 4s ease-in-out infinite
+
 // Section styling
 
 #initiation
   text-align center
+  background-color orange
+  opacity 0
+  transition opacity 0.6s 1s
 
-  > div
-    transition opacity 1.6s linear
-    opacity 0
+  &.underway
+    transition opacity 0.6s
+    opacity 1
 
-    &.visible
-      opacity 1
+  h1, h2, h3
+    line-height 1
+    margin 0
 
-  .initiation-piece
-    position absolute
-    top 0
-    left 0
-    width 100%
-    height 100%
-    padding-top 100px
-    box-sizing border-box
-    cursor pointer
+  h3
+    font-size 22px
+    color white
+    margin-top 60px
+  h2
+    font-size 40px
+    text-transform none
+    margin-top 10px
+  h1
+    font-size 68px
+    color white
+    margin-top 20px
 
-    h1
-      font-size 60px
-      margin 0 40px
-      line-height 1
+  .flip-hex
+    margin 60px auto
+    width 523px
+    height 600px
 
-    .img
-      width 500px
-      height 500px
-      margin 20px auto
-      background-repeat no-repeat
-      background-position center
-
-    h2
-      font-size 40px
-      text-transform none
-      line-height 1
-      margin 0 0 10px 0
-
-    &.orange
-      background-color orange
-      .img
-        background-image: url('/frontend/image/skull-large-black.png'), url('/frontend/image/hex-white.png')
-      h1
-        color white
-      h2
-        color black
-
-    &.white
-      background-color white
-      .img
-        background-image: url('/frontend/image/smiley-large-white.png'), url('/frontend/image/hex-black.png')
-      h2
-        color orange
+    .front
+      background-image url('/frontend/image/hex-opening-black.png')
+    .back
+      background-image url('/frontend/image/hex-opening-white.png')
 
 #intrusion
   transition opacity 1s
   background-color white
   text-align center
+  opacity 0
+  transition opacity 0.6s
+
+  &.underway
+    opacity 1
 
   > div
     position absolute
@@ -263,6 +275,7 @@ body > div
         opacity 0
         color white
         font-size 40px
+        line-height 1.1
 
         &.visible
           opacity 1
@@ -293,13 +306,6 @@ body > div
   left 0
   background-color white
 
-  .name
-    opacity 0
-
-    &.visible
-      transition opacity 0.4s
-      opacity 1
-
   h1.name
     position absolute
     top 112px
@@ -309,31 +315,55 @@ body > div
     color white
     text-transform none
     -webkit-transform translateY(-200px)
-    transition -webkit-transform 0.4s, opacity 0.2s !important
+    transition -webkit-transform 0.4s, opacity 0.2s
+    opacity 0
 
     &.visible
       -webkit-transform none
+      opacity 1
 
   .instructions
     z-index 2
     opacity 1
     position absolute
-    top 440px
+    top 456px
     width 440px
     left 164px
     pointer-events none
 
+    &.visible
+      h2
+        opacity 1
+
     &.hidden
-      transition opacity 0.6s
-      opacity 0
+      .flip-hex
+        .back
+          transition color 0.6s
+          color white
 
     h2
-      text-transform none
+      z-index 2
+      position relative
       text-align center
+      text-transform none
+      opacity 0
+      transition opacity 0.6s
 
-    h2.name
+    .flip-hex
+      line-height 279px
+      font-size 37px
+      width 243px
+      height 279px
+      top 4px
+      left 98px
+      position absolute
+      text-align center
+      z-index 1
       text-transform uppercase
-      color orange
+
+      .back, .front
+        background-image url('/frontend/image/hex-small-white.png')
+        color orange
 
   .counter
     position absolute
@@ -343,6 +373,7 @@ body > div
     height 140px
     margin-left -60px
     display none
+    z-index 4
 
     &.visible
       display block
@@ -462,3 +493,15 @@ body > div
 
       .front
         background-image url('/frontend/image/hex-small-white.png')
+
+#completion
+  background-image url('/frontend/image/bg.png')
+
+  .selection-header
+    border-top 864px solid orange
+    -webkit-transform translateY(-864px)
+
+    &.down
+      -webkit-transform none
+      transition -webkit-transform 0.6s
+
