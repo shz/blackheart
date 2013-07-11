@@ -5,6 +5,7 @@ var http = require('http')
   , data = require('./backend/data')
   , email = require('./backend/email')
   , frontend = require('./frontend/frontend')
+  , appcache = require('./frontend/appcache')
   , helpers = require('./helpers')
   ;
 
@@ -29,7 +30,10 @@ console.log('');
 var routes =
 { '^/$': dashboard.handler
 , '^/create$': creation.handler
+
 , '^/frontend/': frontend.handler
-, '^/data': data.handler
-, '^/email': email.handler
+, '^/appcache$': appcache.handler
+
+, '^/data$': data.handler
+, '^/email$': email.handler
 };
