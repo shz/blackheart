@@ -26,7 +26,7 @@ exports.handler = function(req, res) {
         console.log('Bad POST to /data');
         console.log(err.stack || err.message || err);
         console.log(400, req.url);
-        return;
+        return respond(res, 400, {error: 'Bad JSON man'});
       }
 
       // Add data to the aggregate

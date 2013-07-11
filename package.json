@@ -14,6 +14,7 @@
   "license": "Public Domain",
   "dependencies": {
     "jade": "~0.30.0",
-    "stylus": "~0.32.1"
+    "stylus": "~0.32.1",
+    "mailgun": "*"
   }
 }

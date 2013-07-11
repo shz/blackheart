@@ -3,6 +3,7 @@ var http = require('http')
   , creation = require('./backend/creation')
   , dashboard = require('./backend/dashboard')
   , data = require('./backend/data')
+  , email = require('./backend/email')
   , frontend = require('./frontend/frontend')
   , helpers = require('./helpers')
   ;
@@ -30,4 +31,5 @@ var routes =
 , '^/create$': creation.handler
 , '^/frontend/': frontend.handler
 , '^/data': data.handler
+, '^/email': email.handler
 };
