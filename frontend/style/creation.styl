@@ -1,5 +1,12 @@
 orange = rgb(255, 85, 50)
 
+transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  -ms-transition arguments
+  -o-transition arguments
+  transition arguments
+
 body > div
   position absolute
   top 0
@@ -151,14 +158,14 @@ body > div
       position absolute
       top 400px
       left 263px
-      -webkit-transition -webkit-transform 1s
+      transition -webkit-transform 1s
       -webkit-transform rotate(-90deg) scale(0)
       z-index 1
 
       &.in
         -webkit-transform rotate(0) scale(1)
       &.out
-        -webkit-transition -webkit-transform 0.8s
+        transition -webkit-transform 0.8s
         -webkit-transform rotate(180deg) scale(6)
       &.gone
         display none
@@ -205,7 +212,7 @@ body > div
       position absolute
       top 400px
       left 263px
-      -webkit-transition -webkit-transform 1s
+      transition -webkit-transform 1s
       -webkit-transform rotate(-90deg) scale(0)
       z-index 1
 
@@ -403,7 +410,7 @@ body > div
       position absolute
       top 70px
       left 0px
-      -webkit-transition all 0.4s
+      transition all 0.4s
       opacity 1
 
       &.done
@@ -485,7 +492,7 @@ body > div
 
       &.selected
         .back
-          background-image url('/frontend/iamge/hex-small-white.png')
+          background-image url('/frontend/image/hex-small-white.png')
 
           .red
             transition opacity 0.4s
@@ -519,7 +526,7 @@ body > div
     position absolute
     top 400px
     left 263px
-    -webkit-transition -webkit-transform 1s
+    transition -webkit-transform 1s
     -webkit-transform rotate(-90deg) scale(0)
     z-index 1
 

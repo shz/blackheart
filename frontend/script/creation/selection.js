@@ -52,6 +52,11 @@
             var handler = function(e) {
               e.preventDefault();
 
+              if (navigator.userAgent.match(/iPad/))
+                bh.creation.clickAudio.src = bh.creation.clickAudio.src;
+              else
+                bh.creation.clickAudio.currentTime = 0;
+              bh.creation.clickAudio.play();
               pieces[i].className += ' selected';
 
               if (done) return;

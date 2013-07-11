@@ -73,12 +73,17 @@ var serve = function(res, path) {
     case 'html':
       contentType = 'text/html; charset=utf-8';
       break;
+    case 'mp3':
+      contentType = 'audio/mpeg';
+      break;
   }
 
   var content = cache[path];
   res.writeHead(200, {
+    'Accept-Ranges': 'bytes',
     'Content-Type': contentType,
-    'Content-Length': content.length
+    'Content-Length': content.length,
+    'Content-Range': 'bytes 0-' + content.length + '/' + content.length
   });
   res.end(content);
   console.log('200', path);

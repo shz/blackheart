@@ -3,6 +3,12 @@ bh.creation.initiation = function() {
   w.innerHTML = bh.templates.initiation();
   var handler = function(e) {
     e.preventDefault();
+
+    var audio = new Audio();
+    audio.src = '/frontend/audio/soundtrack.mp3';
+    audio.loop = true;
+    audio.play();
+
     bh.creation.next();
   };
   w.addEventListener('touchstart', handler, false);

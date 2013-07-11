@@ -12,6 +12,7 @@ bh.creation.intrusion = function() {
     hex.className = 'hex in';
 
     setTimeout(function() {
+
       var p = $('#intrusion .first p');
       var o = document.createElement('object');
       o.setAttribute('type', 'image/svg+xml');
@@ -79,6 +80,10 @@ bh.creation.intrusion = function() {
     setTimeout(function() {
       var handler = function(e) {
         e.preventDefault();
+
+        var audio = bh.creation.clickAudio = new Audio();
+        audio.src = '/frontend/audio/click.mp3';
+        audio.load();
 
         $('#intrusion .second .text').className += ' hidden';
         $('#intrusion .second .orange-block').className += ' visible';
