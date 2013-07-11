@@ -2,3 +2,4 @@ node_modules/
 *.pdf
 data.bin
 email.json
+.DS_Store
