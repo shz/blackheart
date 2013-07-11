@@ -101,27 +101,36 @@ body > div
     margin 0
 
   h3
-    font-size 22px
+    font-size 16px
     color white
-    margin-top 60px
-  h2
-    font-size 40px
-    text-transform none
-    margin-top 10px
+    color black
   h1
-    font-size 68px
+    font-size 62px
     color white
     margin-top 20px
+    position relative
+    z-index 2
 
   .flip-hex
-    margin 60px auto
+    z-index 10
+    margin 180px auto 80px auto
     width 523px
     height 600px
+    background-image url('/frontend/image/hex-opening-white.png')
 
-    .front
-      background-image url('/frontend/image/hex-opening-black.png')
-    .back
-      background-image url('/frontend/image/hex-opening-white.png')
+    .back, .front
+      transition -webkit-transform 1.4s
+
+  .gradient
+    -webkit-transform-origin left top
+    -webkit-transform  rotate(60deg) perspective(600px) rotateY(13deg)
+    position absolute
+    top 329px
+    left 646px
+    width 920px
+    height 603px
+    background-image -webkit-linear-gradient(left, rgba(0, 0, 0, 0.4) 0%, transparent 100%)
+
 
 #intrusion
   transition opacity 1s
@@ -587,11 +596,11 @@ body > div
       transition all 2s
       -webkit-transform none
     polygon.nekkid0
-      -webkit-transform rotate(90deg) translateX(300px) scale(0)
+      -webkit-transform rotate(90deg) translate3d(300px, 0, 0) scale(0)
     polygon.nekkid1
-      -webkit-transform rotate(90deg) translateY(300px) scale(0)
+      -webkit-transform rotate(90deg) translate3d(0, 300px, 0) scale(0)
     polygon.nekkid2
-      -webkit-transform rotate(90deg) translateX(-300px) scale(0)
+      -webkit-transform rotate(90deg) translate3d(-300px, 0, 0) scale(0)
     polygon.nekkid3
-      -webkit-transform rotate(90deg) translateY(-300px) scale(0)
+      -webkit-transform rotate(90deg) translate3d(0, -300px, 0) scale(0)
 

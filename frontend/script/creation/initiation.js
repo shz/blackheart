@@ -14,5 +14,17 @@ bh.creation.initiation = function() {
   w.addEventListener('touchstart', handler, false);
   w.addEventListener('click', handler, false);
 
+  var hex = null;
+  var animInterval = setInterval(function() {
+    if (!hex)
+      hex = document.querySelector('#initiation .flip-hex');
+
+    if (hex.className.match(/flipped/))
+      hex.className = hex.className.replace(' flipped', '');
+    else
+      hex.className += ' flipped';
+
+  }, 3000);
+
   return [ w ];
 };
