@@ -1,5 +1,12 @@
 bh.hexagon = function(hash) {
 
+  // Random hash if none passed in
+  if (!hash) {
+    hash = '';
+    for (var i=0; i<40; i++)
+      hash += '0123456789abcdef'.charAt((Math.random() * 16)|0);
+  }
+
   // The root element we're going to use
   var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
@@ -23,11 +30,14 @@ bh.hexagon = function(hash) {
   );
   var sectionWidth = (edgeCount * triangleWidth) + ((edgeCount - 1) * (trianglePadding * 2));
   var sectionHeight = (edgeCount * triangleHeight) + ((edgeCount - 1) * trianglePadding);
+  var charsPerColorPoint = 40 / colorPoints;
 
   // Convert the hash into a fixed number of integer points.
   // We need 5 points per color point.
-  var colorPositions = [];
-  // TODO - generate these based off the hash
+  var hashParts = [];
+  var hashStride = (40 / colorPoints) / 5;
+  for (var i=0; i < colorPoints * 5; i++)
+    hashParts.push(parseInt(hash.substr(i * hashStride, hashStride), 16) / (Math.pow(16, hashStride) - 1));
 
   // Set proper SVG size
   svg.style.width = ((2 * sectionWidth)|0) + 'px';
@@ -36,14 +46,15 @@ bh.hexagon = function(hash) {
 
   // Color positions
   var colorPositions = [];
-  var r = function() {
-    return Math.random();
+  var r = function(i, k) {
+    // return Math.random();
+    return hashParts[i*colorPoints + k];
   };
-  for (var i=0; i<4; i++) {
+  for (var i=0; i<colorPoints; i++) {
     colorPositions.push([
-      r(),
-      r(),
-      [r() * 0.8 + 0.2, r() * 0.8 + 0.2, r() * 0.8 + 0.2]
+      r(i, 0),
+      r(i, 1),
+      [r(i, 2) * 0.8 + 0.2, r(i, 3) * 0.8 + 0.2, r(i, 4) * 0.8 + 0.2]
     ]);
   }
 
