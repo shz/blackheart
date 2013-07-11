@@ -285,7 +285,7 @@ body > div
   .third
     display none
     transition opacity 0.4s
-    background-image url('/frontend/image/bg.png')
+    background-image url('/frontend/image/bg2.png')
     width 100%
     height 100%
     background-color white
@@ -495,13 +495,57 @@ body > div
         background-image url('/frontend/image/hex-small-white.png')
 
 #completion
-  background-image url('/frontend/image/bg.png')
+  background-image url('/frontend/image/bg2.png')
+  text-align center
 
   .selection-header
-    border-top 864px solid orange
-    -webkit-transform translateY(-864px)
+    border-top 1064px solid orange
+    -webkit-transform translateY(-1064px)
 
     &.down
       -webkit-transform none
       transition -webkit-transform 0.6s
 
+  object
+    position absolute
+    top 492px
+    left 282px
+    z-index 2
+
+  .hex
+    background-image url('/frontend/image/hex-small-white.png')
+    width 243px
+    height 279px
+    position absolute
+    top 400px
+    left 263px
+    -webkit-transition -webkit-transform 1s
+    -webkit-transform rotate(-90deg) scale(0)
+    z-index 1
+
+    &.in
+      -webkit-transform rotate(0) scale(1)
+    &.out
+      -webkit-transform rotate(90deg) scale(6)
+    &.gone
+      display none
+
+  p
+    transition all 0.4s
+    opacity 0
+    -webkit-transform translate3d(0, 20px, 0)
+    color white
+    text-transform uppercase
+    font-size 11pt
+    z-index 1
+    position absolute
+    top 700px
+    width 100%
+    left 0
+
+    &.visible
+      opacity 1
+      -webkit-transform translate3d(0, 0, 0)
+
+    &.fade
+      opacity 0

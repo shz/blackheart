@@ -12,7 +12,7 @@ bh.creation = {};
                   // , 'joy'
                   // , 'surprise'
 
-                  , 'completion'
+                    'completion'
                   , 'demonstration'
                   , 'expulsion'
                   ];
