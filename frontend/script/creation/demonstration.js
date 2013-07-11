@@ -56,6 +56,11 @@ bh.creation.demonstration = function() {
       }})(i), i * 10);
     }
 
+    // Fade in the bg part
+    setTimeout(function() {
+      $('.bg')[0].className += ' visible';
+    }, 1000);
+
     // Show the final form after a time
     setTimeout(showForm, 4000);
   };
@@ -95,6 +100,7 @@ bh.creation.demonstration = function() {
     for (var i=0; i<inputs.length; i++)
       inputs[i].disabled = true;
 
+    $('.bg').className = 'bg';
     $('svg')[0].style.display = 'none';
     document.querySelector('#demonstration').className += ' orange';
     $('form')[0].className = 'form';

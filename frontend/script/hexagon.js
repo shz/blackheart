@@ -9,6 +9,7 @@ bh.hexagon = function(hash) {
 
   // The root element we're going to use
   var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.style.WebkitTransform = 'rotate(45deg)';
 
   // Util function for creating an SVG element
   var make = function(t, attr) {
