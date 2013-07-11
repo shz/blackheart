@@ -10,6 +10,9 @@ bh.creation.demonstration = function() {
     return document.querySelectorAll('#demonstration ' + sel);
   };
 
+  // Data
+  var hash = '';
+
   // Steps
 
   var showText = function() {
@@ -22,9 +25,11 @@ bh.creation.demonstration = function() {
 
   var showHexagon = function() {
 
+    // Save the data
+    bh.data.save(bh.creation.preservedData);
+
     // Generate the SHA1 hash of the user data
     var words = CryptoJS.SHA1(JSON.stringify(bh.creation.preservedData)).words;
-    var hash = '';
     for (var i=0; i<words.length; i++) {
       var n = words[i];
       if (n < 0)
@@ -50,6 +55,48 @@ bh.creation.demonstration = function() {
         polygons[i].setAttribute('class', '');
       }})(i), i * 10);
     }
+
+    // Show the final form after a time
+    setTimeout(showForm, 4000);
+  };
+
+  var showForm = function() {
+    var xhr = null;
+
+    $('form')[0].className += ' visible';
+    $('form')[0].addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Send the email. and continue onwards when it's done
+      var email = $('input[type="email"]')[0].value;
+      xhr = new XMLHttpRequest();
+      xhr.open('POST', '/email');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4)
+          leave();
+      };
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({email: email, hash: hash}));
+    });
+
+    var handler = function() {
+      if (xhr) {
+        xhr.abort();
+        xhr = null;
+      }
+      leave();
+    };
+    $('form a')[0].addEventListener('touchstart', handler, false);
+    $('form a')[0].addEventListener('click', handler, false);
+  };
+
+  var leave = function() {
+    $('svg')[0].style.display = 'none';
+    document.querySelector('#demonstration').className += ' orange';
+    $('form')[0].className = 'form';
+    setTimeout(function() {
+      bh.creation.next();
+    }, 600);
   };
 
   // Go

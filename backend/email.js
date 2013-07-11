@@ -1,5 +1,8 @@
 var mailgun = require('mailgun');
 
+// Used to ensure we don't double send or any of that nonsense
+var sentEmails = {};
+
 var mg = null;
 try {
   var config = require('../email.json');
@@ -42,6 +45,8 @@ exports.handler = function(req, res) {
     // Make sure we've got an email and a hash
     if (!data.email || !data.hash)
       return respond(res, 400, {error: 'Missing field(s)'});
+    if (data.email in sentEmails)
+      return respond(res, 400 {error: 'Email already sent to this person'});
 
     if (mg) {
       var from = 'The Human Preservation Initiative <lab@humanpreservationinitiative.mailgun.org>';
@@ -53,6 +58,7 @@ exports.handler = function(req, res) {
           body += "Yours,\nThe Human Preservation Initiative";
 
       mg.sendText(from, data.email, subject, body, 'humanpreservationinitiative.mailgun.org');
+      sentEmails[data.email] = true;
     }
 
     // Respond nicely

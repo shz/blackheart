@@ -557,6 +557,11 @@ body > div
       opacity 0
 
 #demonstration
+  background-color white
+
+  &.orange
+    background-color orange
+
   h1
     text-transform none
     font-size 30px
@@ -594,3 +599,80 @@ body > div
     polygon.nekkid3
       -webkit-transform rotate(90deg) translate3d(0, -300px, 0) scale(0)
 
+  form
+    width 100%
+    height 100%
+    background-color black
+    position absolute
+    top 0
+    left 0
+    -webkit-transform translateY(1024px)
+    transition -webkit-transform 0.6s
+    z-index 2
+    text-align center
+
+    &.visible
+      -webkit-transform none
+
+    h2
+      font-size 36px
+      color white
+      text-transform none
+      margin 0
+      line-height 1.4
+
+      &.orange
+        color orange
+
+      &:first-child
+        margin-top 340px
+
+    input[type="email"]
+      display block
+      margin auto
+      width 300px
+      text-align center
+      padding 16px 14px 12px 14px
+      font-size 20px
+      font-family 'collator'
+      color black
+      border none
+      outline none
+      -webkit-appearance none
+      margin-top 20px
+      border-radius 0
+
+    a, input[type="submit"]
+      display block
+      margin auto
+      width 300px
+      padding 18px 14px 16px 14px
+      color white
+      text-decoration none
+      transition background 1s
+      -webkit-appearance none
+      border none
+      font-size 20px
+      border-radius 0
+
+      &.submit
+        margin-top 16px
+        background-color orange
+        width 328px
+        font-family 'collator'
+
+        &:hover
+          background-color darken(orange, 20%)
+        &:active
+          transition none
+          background-color lighten(orange, 20%)
+      &.skip
+        margin-top 200px
+        background-color #AAA
+        border 1px solid white
+        width 298px
+        &:hover
+          background-color darken(#AAA, 20%)
+        &:active
+          transition none
+          background-color lighten(#AAA, 20%)

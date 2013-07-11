@@ -1,5 +1,8 @@
 bh.data = {};
 bh.data.save = function(data, callback) {
+  if (!callback)
+    callback = function() {};
+
   var aborted = false;
   var finished = false;
   setTimeout(function() {
