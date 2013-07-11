@@ -43,5 +43,4 @@ bh.creation = {};
   };
 })();
 
-
-setTimeout(bh.creation.next, 100);
+window.addEventListener('DOMContentLoaded', bh.creation.next);
