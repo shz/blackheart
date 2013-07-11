@@ -21,7 +21,24 @@ bh.creation.demonstration = function() {
   };
 
   var showHexagon = function() {
-    document.querySelector('#demonstration').appendChild(bh.hexagon());
+
+    // Generate the SHA1 hash of the user data
+    var words = CryptoJS.SHA1(JSON.stringify(bh.creation.preservedData)).words;
+    var hash = '';
+    for (var i=0; i<words.length; i++) {
+      var n = words[i];
+      if (n < 0)
+        n = 0xFFFFFFFF + n + 1;
+      n = n.toString(16);
+      while (n.length < 8)
+        n = '0' + n;
+      hash += n;
+    }
+
+    // Pipe that data into the hexagon generator, and insert the resulting hexagon
+    document.querySelector('#demonstration').appendChild(bh.hexagon(hash));
+
+    // Animate the resulting SVG smoothly
     var polygons = Array.prototype.slice.call($('svg polygon'));
     polygons = shuffle(polygons);
     var dir = '0';

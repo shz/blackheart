@@ -1,4 +1,9 @@
-bh.hexagon = function() {
+bh.hexagon = function(hash) {
+
+  // The root element we're going to use
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  // Util function for creating an SVG element
   var make = function(t, attr) {
     var el = document.createElementNS(svg.namespaceURI, t);
     for (var i in attr) if (attr.hasOwnProperty(i))
@@ -6,22 +11,23 @@ bh.hexagon = function() {
     return el;
   };
 
-  // Constants
-  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
   // Layout properties
   var edgeCount = 5;
   var triangleWidth = 97;
   var trianglePadding = 0;
+  var colorPoints = 4; // Max 8 and (40 / colorPoints) must be a multiple of 5
 
   // Calculated layout properties
   var triangleHeight = Math.sqrt(
     -Math.pow(triangleWidth / 2, 2) + Math.pow(triangleWidth, 2)
   );
-  // console.log(triangleWidth, triangleHeight);
   var sectionWidth = (edgeCount * triangleWidth) + ((edgeCount - 1) * (trianglePadding * 2));
   var sectionHeight = (edgeCount * triangleHeight) + ((edgeCount - 1) * trianglePadding);
-  // console.log(sectionWidth, sectionHeight);
+
+  // Convert the hash into a fixed number of integer points.
+  // We need 5 points per color point.
+  var colorPositions = [];
+  // TODO - generate these based off the hash
 
   // Set proper SVG size
   svg.style.width = ((2 * sectionWidth)|0) + 'px';

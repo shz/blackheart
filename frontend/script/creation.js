@@ -1,4 +1,5 @@
 bh.creation = {};
+bh.creation.preservedData = {};
 
 (function() {
   var stack = [];

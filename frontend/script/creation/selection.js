@@ -14,9 +14,14 @@
 
       var id = null;
       var done = false;
+      var data = bh.creation.preservedData[name.toLowerCase()] = {};
+      var started = null;
 
       var finish = function(num) {
         done = true;
+
+        data.num = num;
+        data.time = (num == -1) ? -1 : (Date.now() - started);
 
         $('h1.name')[0].className = 'name';
 
@@ -101,6 +106,7 @@
 
       var runClock = function() {
         var ss = $('.counter div');
+        started = Date.now();
 
         // Animate away the sections of the clock
         for (var i=ss.length-1; i>=0; i--) {
