@@ -46,7 +46,7 @@ exports.handler = function(req, res) {
     if (!data.email || !data.hash)
       return respond(res, 400, {error: 'Missing field(s)'});
     if (data.email in sentEmails)
-      return respond(res, 400 {error: 'Email already sent to this person'});
+      return respond(res, 400, {error: 'Email already sent to this person'});
 
     if (mg) {
       var from = 'The Human Preservation Initiative <lab@humanpreservationinitiative.mailgun.org>';
