@@ -2,17 +2,17 @@ bh.creation = {};
 
 (function() {
   var stack = [];
-  var procedure = [ //'initiation'
-                  // , 'intrusion'
+  var procedure = [ 'initiation'
+                  , 'intrusion'
 
-                  // , 'anger'
-                  // , 'love'
-                  // , 'fear'
-                  // , 'sadness'
-                  // , 'joy'
-                  // , 'surprise'
+                  , 'anger'
+                  , 'love'
+                  , 'fear'
+                  , 'sadness'
+                  , 'joy'
+                  , 'surprise'
 
-                    'completion'
+                  , 'completion'
                   , 'demonstration'
                   , 'expulsion'
                   ];
