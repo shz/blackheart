@@ -10,16 +10,16 @@ if (window.applicationCache) {
 (function() {
   var stack = [];
   var procedure = [ 'initiation'
-                  , 'intrusion'
+                  // , 'intrusion'
 
-                  , 'anger'
-                  , 'love'
-                  , 'fear'
-                  , 'sadness'
-                  , 'joy'
-                  , 'surprise'
+                  // , 'anger'
+                  // , 'love'
+                  // , 'fear'
+                  // , 'sadness'
+                  // , 'joy'
+                  // , 'surprise'
 
-                  , 'completion'
+                  // , 'completion'
                   , 'demonstration'
                   , 'expulsion'
                   ];

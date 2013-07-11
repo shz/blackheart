@@ -9,7 +9,6 @@ bh.hexagon = function(hash) {
 
   // The root element we're going to use
   var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.style.WebkitTransform = 'rotate(45deg)';
 
   // Util function for creating an SVG element
   var make = function(t, attr) {
@@ -43,7 +42,8 @@ bh.hexagon = function(hash) {
   // Set proper SVG size
   svg.style.width = ((2 * sectionWidth)|0) + 'px';
   svg.style.height = ((2 * sectionHeight)|0) + 'px';
-  svg.style.WebkitTransform = 'scale(0.5)';
+  svg.style.WebkitTransform = 'rotate(60deg) scale(0.5)';
+  svg.style.WebkitTransformOrigin = 'left top';
 
   // Color positions
   var colorPositions = [];
