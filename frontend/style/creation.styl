@@ -676,3 +676,40 @@ body > div
         &:active
           transition none
           background-color lighten(#AAA, 20%)
+
+#expulsion
+  background-color orange
+
+  .hex
+    background-image url('/frontend/image/hex-white.png')
+    width 405px
+    height 465px
+    position absolute
+    top 280px
+    left 182px
+    transition -webkit-transform 1s
+    -webkit-transform rotate(-90deg) scale(0)
+    z-index 1
+
+    &.in
+      -webkit-transform rotate(0) scale(1)
+    &.out
+      transition -webkit-transform 0.8s 0.4s
+      -webkit-transform rotate(180deg) scale(6)
+
+    p
+      position absolute
+      top 140px
+      left 0
+      width 100%
+      line-height 1.5
+      font-size 30px
+      text-align center
+      opacity 0
+
+    &.in p
+      opacity 1
+      transition opacity 0.3s 1s
+    &.out p
+      opacity 0
+      transition opacity 0.3s
