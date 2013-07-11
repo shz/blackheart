@@ -91,6 +91,10 @@ bh.creation.demonstration = function() {
   };
 
   var leave = function() {
+    var inputs = $('input');
+    for (var i=0; i<inputs.length; i++)
+      inputs[i].disabled = true;
+
     $('svg')[0].style.display = 'none';
     document.querySelector('#demonstration').className += ' orange';
     $('form')[0].className = 'form';
