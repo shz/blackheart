@@ -89,6 +89,7 @@ body > div
 #initiation
   text-align center
   background-color orange
+  background-image url('/frontend/image/openbg.png')
   opacity 0
   transition opacity 0.6s 1s
 
@@ -108,11 +109,8 @@ body > div
     font-size 62px
     color white
     margin-top 20px
-    position relative
-    z-index 2
 
   .flip-hex
-    z-index 10
     margin 180px auto 80px auto
     width 523px
     height 600px
@@ -120,17 +118,6 @@ body > div
 
     .back, .front
       transition -webkit-transform 1.4s
-
-  .gradient
-    -webkit-transform-origin left top
-    -webkit-transform  rotate(60deg) perspective(600px) rotateY(13deg)
-    position absolute
-    top 329px
-    left 646px
-    width 920px
-    height 603px
-    background-image -webkit-linear-gradient(left, rgba(0, 0, 0, 0.4) 0%, transparent 100%)
-
 
 #intrusion
   transition opacity 1s
