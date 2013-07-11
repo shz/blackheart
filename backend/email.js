@@ -44,9 +44,15 @@ exports.handler = function(req, res) {
       return respond(res, 400, {error: 'Missing field(s)'});
 
     if (mg) {
-      var body = 'TODO - Body';
+      var from = 'The Human Preservation Initiative <lab@humanpreservationinitiative.mailgun.org>';
+      var subject = 'Your Individual Emotional Imprint code';
+      var body =  "Thank you for your participation in our scientific efforts. It's people like you that make our species worth preserving.\n\n";
+          body += "You may purchase a print of your Individual Emotional Imprint for $5 at the front desk. Simply show the attendant your unique code below:\n\n";
+          body += data.hash + '\n\n';
+          body += "Also please visit http://humanpreservationinitiative.com for updates on this project, including a visualization of all data we collect.\n\n";
+          body += "Yours,\nThe Human Preservation Initiative";
 
-      mg.sendText('robot@humanpreservationinitiative.mailgun.org', data.email, 'TODO - Subject', body, 'humanpreservationinitiative.mailgun.org');
+      mg.sendText(from, data.email, subject, body, 'humanpreservationinitiative.mailgun.org');
     }
 
     // Respond nicely
