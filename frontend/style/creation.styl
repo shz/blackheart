@@ -324,7 +324,7 @@ body > div
 
   h1.name
     position absolute
-    top 112px
+    top 96px
     left 30px
     margin 0
     line-height 1
@@ -333,6 +333,7 @@ body > div
     -webkit-transform translateY(-200px)
     transition -webkit-transform 0.4s, opacity 0.2s
     opacity 0
+    font-size 60px
 
     &.visible
       -webkit-transform none
@@ -342,10 +343,11 @@ body > div
     z-index 2
     opacity 1
     position absolute
-    top 456px
+    top 462px
     width 440px
     left 164px
     pointer-events none
+    color orange
 
     &.visible
       h2
@@ -364,13 +366,14 @@ body > div
       text-transform none
       opacity 0
       transition opacity 0.6s
+      font-size 35px
 
     .flip-hex
       line-height 279px
-      font-size 37px
+      font-size 42px
       width 243px
       height 279px
-      top 4px
+      top -2px
       left 98px
       position absolute
       text-align center
@@ -379,7 +382,7 @@ body > div
 
       .back, .front
         background-image url('/frontend/image/hex-small-white.png')
-        color orange
+        color black
 
   .counter
     position absolute
@@ -426,32 +429,32 @@ body > div
         opacity 0
 
       &.s1
-        -webkit-transform rotate(0deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        -webkit-transform rotate(0deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.8
         &.done
           -webkit-transform rotate(0deg + baserot) translateX(back) scale(0)
       &.s2
-        -webkit-transform rotate(60deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        -webkit-transform rotate(60deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.9
         &.done
           -webkit-transform rotate(60deg + baserot) translateX(back) scale(0)
       &.s3
-        -webkit-transform rotate(120deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        -webkit-transform rotate(120deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 1
         &.done
           -webkit-transform rotate(120deg + baserot) translateX(back) scale(0)
       &.s4
-        -webkit-transform rotate(180deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        -webkit-transform rotate(180deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.75
         &.done
           -webkit-transform rotate(180deg + baserot) translateX(back) scale(0)
       &.s5
-        -webkit-transform rotate(240deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        -webkit-transform rotate(240deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.6
         &.done
           -webkit-transform rotate(240deg + baserot) translateX(back) scale(0)
       &.s6
-        -webkit-transform rotate(300deg + baserot) translateX(backstart) rotate(90deg) scale(-1, 1)
+        -webkit-transform rotate(300deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.5
         &.done
           -webkit-transform rotate(300deg + baserot) translateX(back) scale(0)
