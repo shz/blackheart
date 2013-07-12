@@ -597,36 +597,41 @@ body > div
       opacity 1
 
     .header
+      position absolute
+      top 20px
+      left 0
+      width 100%
+
       .vert
         position absolute
-        top 20px
+        top 0
         right 120px
         width 1px
         height 100px
         background-color black
       .horiz
         position absolute
-        top 70px
+        top 50px
         left 20px
         width 768px - 20px - 20px - 120px
         height 1px
         background-color black
       .a
         position absolute
-        top 50px
+        top 33px
         right 140px
         font-size 12px
         text-transform uppercase
       .b
         text-transform uppercase
         position absolute
-        top 76px
+        top 59px
         right 140px
         font-size 20px
       .c
         position absolute
         right 22px
-        top 130px
+        top 110px
         text-align center
         font-size 10px
       .d
@@ -634,18 +639,23 @@ body > div
         height 100px
         position absolute
         right 20px
-        top 20px
+        top 0
         background-image url('/frontend/image/hex-presentation.png')
         background-size 100%
         color white
         text-align center
-        line-height 100px
+        line-height 110px
         font-size 36px
 
     .footer
+      position absolute
+      top 910px
+      left 0
+      width 100%
+
       .logo
         position absolute
-        top 920px
+        top 20px
         left 20px
         background-image url('/frontend/image/logo-presentation.png')
         background-repeat no-repeat
@@ -656,20 +666,20 @@ body > div
         padding-right 10px
       .top
         position absolute
-        top 900px
+        top 0
         left 20px
         width 768px - 20px - 20px
         height 1px
         background-color black
       .big
         position absolute
-        top 920px
+        top 25px
         left 200px
         text-transform uppercase
         font-size 20px
       .small
         position absolute
-        top 950px
+        top 55px
         left 200px
         font-size 10px
 
@@ -804,3 +814,14 @@ body > div
     &.out p
       opacity 0
       transition opacity 0.3s
+
+@media print {
+  #demonstration .bg {
+    .footer {
+      top 890px
+    }
+    .header {
+      top 30px
+    }
+  }
+}
