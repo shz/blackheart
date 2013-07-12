@@ -18,7 +18,7 @@
   };
 
   var doPrint = function() {
-    // window.print();
+    window.print();
   };
 
   var reload = function() {
