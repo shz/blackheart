@@ -4,6 +4,7 @@ var http = require('http')
   , dashboard = require('./backend/dashboard')
   , data = require('./backend/data')
   , email = require('./backend/email')
+  , print = require('./backend/print')
   , frontend = require('./frontend/frontend')
   , appcache = require('./frontend/appcache')
   , helpers = require('./helpers')
@@ -36,4 +37,5 @@ var routes =
 
 , '^/data$': data.handler
 , '^/email$': email.handler
+, '^/print': print.handler
 };

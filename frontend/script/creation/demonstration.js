@@ -70,7 +70,7 @@ bh.creation.demonstration = function() {
   var showForm = function() {
     var xhr = null;
 
-    $('form')[0].className += ' visible';
+    $('form')[0].className = 'visible';
     $('form')[0].addEventListener('submit', function(e) {
       e.preventDefault();
 
