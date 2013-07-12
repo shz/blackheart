@@ -55,10 +55,11 @@ exports.handler = function(req, res) {
     data.hash = data.hash.replace(/\W/g, '').substr(0, 8);
 
     // Record what we sent
-    db.save(null, {email: data.email, code: data.hash});
+    db.save(null, {email: data.email, code: data.hash}, function() {});
 
     // Send the email if mailgun is ready
     if (mg) {
+      console.log('Sending email to ' + data.email);
       var from = 'The Human Preservation Initiative <lab@humanpreservationinitiative.mailgun.org>';
       var subject = 'Your Individual Emotional Imprint code';
       var body =  "Thank you for your participation in our scientific efforts. It's people like you that make our species worth preserving.\n\n";
