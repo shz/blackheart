@@ -17,9 +17,6 @@ bh.creation.completion = function() {
     if (!object)
       object = $('object')[0];
 
-    // Begin the SVG animation
-    object.contentDocument.querySelector('#wind').beginElement();
-
     // Let the SVG animation ride out for a bit
     setTimeout(function() {
 
@@ -57,7 +54,7 @@ bh.creation.completion = function() {
         var p = $('p')[0];
         var o = document.createElement('object');
         o.setAttribute('type', 'image/svg+xml');
-        o.setAttribute('data', '/frontend/image/infinity_path.svg');
+        o.setAttribute('data', bh.createInfinityPath());
         hex.parentElement.insertBefore(o, hex);
 
         o.onload = function() {
