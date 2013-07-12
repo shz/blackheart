@@ -22,7 +22,7 @@ bh.calcTimes = function(data) {
     count++;
     var t = 6 - Math.max(0, Math.min(6, data[i].time / 1000));
     avg += t;
-    ret.times.push(data[i].time);
+    ret.times.push(t);
   }
   ret.average = avg / count;
   return ret;
