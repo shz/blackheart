@@ -66,7 +66,7 @@ bh.creation.demonstration = function() {
           leave();
       };
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({email: email, hash: hash}));
+      xhr.send(JSON.stringify({email: email, hash: bh.creation.storedDataId}));
     });
 
     var handler = function() {
