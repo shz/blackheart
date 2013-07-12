@@ -23,7 +23,7 @@ var makeCache = function(callback) {
     c += '# At ' + Date.now() + '\n';
 
     // Add cache part
-    c += '\nCACHE:';
+    c += '\nCACHE:\n';
     c += cache.join('\n');
     c += '\n';
 
