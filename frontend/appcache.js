@@ -37,8 +37,8 @@ var makeCache = function(callback) {
     c += '\n';
 
     // Add fallback part
-    c += '\nFALLBACK:\n';
-    c += fallback.join('\n');
+    // c += '\nFALLBACK:\n';
+    // c += fallback.join('\n');
 
     callback(undefined, c);
   });
