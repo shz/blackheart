@@ -2,6 +2,8 @@ var nstore = require('nstore');
 
 var dbDoCallbacks = [];
 var db = nstore.new('db.nstore', function() {
+  if (!dbDoCallbacks)
+    return;
   for (var i=0; i<dbDoCallbacks.length; i++)
     dbDoCallbacks(db);
   dbDoCallbacks = null;
