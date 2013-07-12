@@ -6,8 +6,7 @@ var cache = [ '/'
             , '/create'
             ];
 
-var network = [ '*'
-              , '/data'
+var network = [ '/data'
               , '/email'
               ];
 
