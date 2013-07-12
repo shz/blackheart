@@ -40,10 +40,12 @@ exports.handler = function(req, res) {
 
     dbDo(function(db) {
       db.get(id.toLowerCase(), function(err, doc, key) {
-        if (err)
+        if (err) {
+          console.log(err.stack || err.message || err);
           respond(res, 500, {error: err.stack || err.message || err});
-        else
+        } else {
           respond(res, 200, doc);
+        }
       });
     });
   }
