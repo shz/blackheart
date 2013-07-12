@@ -1,12 +1,21 @@
 (function() {
 
   var getData = function(id, callback) {
-    callback(id);
+    bh.data.load(id, function(err, data) {
+      if (err) {
+        alert('There was a problem:\n\n' + err.stack || err.message || err.toString());
+        return reload();
+      }
+
+      callback(data, id);
+    });
   };
 
-  var showThings = function(data) {
-    var hash = data;
-    document.getElementById('demonstration').innerHTML = bh.templates.demonstration({hash: hash, avg: 1});
+  var showThings = function(data, id) {
+    var hash = bh.hashData(data);
+    var timing = bh.calcTimes(data);
+
+    document.getElementById('demonstration').innerHTML = bh.templates.demonstration({hash: id, avg: timing.average});
     document.getElementById('demonstration').appendChild(bh.hexagon(hash));
     document.querySelector('#demonstration .bg').className += ' visible';
 

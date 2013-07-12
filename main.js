@@ -35,7 +35,7 @@ var routes =
 , '^/frontend/': frontend.handler
 , '^/appcache$': appcache.handler
 
-, '^/data$': data.handler
+, '^/data': data.handler
 , '^/email$': email.handler
 , '^/print': print.handler
 };

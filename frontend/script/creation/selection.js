@@ -8,7 +8,6 @@
       });
 
       var $ = function(sel) {
-        console.log('#' + w.parentElement.id + ' ' + sel);
         return document.querySelectorAll('#' + w.parentElement.id + ' ' + sel);
       };
 

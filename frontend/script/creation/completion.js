@@ -3,6 +3,12 @@ bh.creation.completion = function() {
     return document.querySelectorAll('#completion ' + sel);
   };
 
+  // Save the data
+  bh.data.save(bh.creation.preservedData, function(err, id) {
+    if (!err)
+      bh.creation.storedDataId = id;
+  });
+
   var p;
   var object;
   var updateText = function(txt, callback) {
