@@ -17,6 +17,11 @@ bh.creation.intrusion = function() {
       var o = document.createElement('object');
       o.setAttribute('type', 'image/svg+xml');
       o.setAttribute('data', '/frontend/image/infinity_path.svg');
+      var parm = document.createElement('params');
+      parm.setAttribute('name', 'src');
+      parm.setAttribute('value', '/frontend/image/infinity_path.svg');
+      o.appendChild(parm);
+
       hex.parentElement.insertBefore(o, hex);
 
       o.onload = function() {

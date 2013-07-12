@@ -128,6 +128,8 @@ body > div
 
   &.underway
     opacity 1
+  &.performed
+    opacity 1
 
   > div
     position absolute
@@ -289,6 +291,7 @@ body > div
     display none
     transition opacity 0.4s
     background-image url('/frontend/image/bg2.png')
+    background-image url('/frontend/image/bg2.png'), url('/frontend/image/bg.png')
     width 100%
     height 100%
     background-color white
@@ -307,7 +310,6 @@ body > div
   position absolute
   top 0
   left 0
-  background-color white
 
   h1.name
     position absolute

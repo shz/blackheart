@@ -9,6 +9,8 @@ bh.creation.initiation = function() {
     audio.loop = true;
     audio.play();
 
+    clearInterval(animInterval);
+
     bh.creation.next();
   };
   w.addEventListener('touchstart', handler, false);

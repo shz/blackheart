@@ -1,6 +1,12 @@
 bh.creation = {};
 bh.creation.preservedData = {};
 
+if (window.applicationCache) {
+  applicationCache.addEventListener('updateready', function() {
+    window.location.reload();
+  });
+}
+
 (function() {
   var stack = [];
   var procedure = [ 'initiation'

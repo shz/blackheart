@@ -6,7 +6,8 @@ var cache = [ '/'
             , '/create'
             ];
 
-var network = [ '/data'
+var network = [ '*'
+              , '/data'
               , '/email'
               ];
 
@@ -45,6 +46,7 @@ var makeCache = function(callback) {
 };
 
 var serveCache = function(res, cache) {
+  console.log(200, '/appcache');
   var data = new Buffer(cache, 'utf8');
   res.writeHead(200, {
     'Content-Type': 'text/cache-manifest',
@@ -54,6 +56,7 @@ var serveCache = function(res, cache) {
 };
 
 var serveError = function(res) {
+  console.log(500, '/appcache');
   res.writeHead(500, {'Content-Type': 'text/plain; charset=utf=8'});
   res.end('Error');
 };
