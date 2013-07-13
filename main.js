@@ -1,5 +1,6 @@
 var http = require('http')
   , config = require('./config')
+  , index = require('./backend/index')
   , creation = require('./backend/creation')
   , dashboard = require('./backend/dashboard')
   , data = require('./backend/data')
@@ -29,8 +30,9 @@ console.log('');
 
 // Routes
 var routes =
-{ '^/$': dashboard.handler
+{ '^/$': index.handler
 , '^/create$': creation.handler
+, '^/dashboard$': dashboard.handler
 
 , '^/frontend/': frontend.handler
 , '^/appcache$': appcache.handler
