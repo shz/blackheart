@@ -15,7 +15,7 @@
     var hash = bh.hashData(data);
     var timing = bh.calcTimes(data);
 
-    document.getElementById('demonstration').innerHTML = bh.templates.demonstration({hash: id, avg: timing.average});
+    document.getElementById('demonstration').innerHTML = bh.templates.demonstration({hash: id, timing: timing});
     document.getElementById('demonstration').appendChild(bh.hexagon(hash));
     document.querySelector('#demonstration .bg').className += ' visible';
 

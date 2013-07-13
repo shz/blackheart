@@ -11,9 +11,30 @@ h1
       | Composite
       br
       | Emotional Index
-    .d= avg.toString().substr(0, 3)
+    .d= timing.average.toString().substr(0, 3)
     .horiz
     .vert
+
+  .timing
+    .a
+      h2 Anger
+      h3= 'index ' + timing.times[1] + ' | ' + timing.text[0].toLowerCase()
+    .b
+      h2 Love
+      h3= 'index ' + timing.times[1] + ' | ' + timing.text[1].toLowerCase()
+    .c
+      h2 Fear
+      h3= 'index ' + timing.times[2] + ' | ' + timing.text[2].toLowerCase()
+    .d
+      h2 Sadness
+      h3= 'index ' + timing.times[3] + ' | ' + timing.text[3].toLowerCase()
+    .e
+      h2 Joy
+      h3= 'index ' + timing.times[4] + ' | ' + timing.text[4].toLowerCase()
+    .f
+      h2 Surprise
+      h3= 'index ' + timing.times[5] + ' | ' + timing.text[5].toLowerCase()
+
 
   .footer
     .logo

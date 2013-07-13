@@ -20,7 +20,10 @@
         done = true;
 
         data.num = num;
-        data.time = (num == -1) ? -1 : (Date.now() - started);
+        data.time = (num == -1) ? 7000 : (Date.now() - started);
+
+        if (started == null)
+          data.time = 0;
 
         $('h1.name')[0].className = 'name';
 
