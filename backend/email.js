@@ -1,4 +1,7 @@
-var mailgun = require('mailgun');
+var mailgun = require('mailgun')
+  , nstore = require('nstore');
+
+var db = nstore.new('emails.nstore');
 
 // Used to ensure we don't double send or any of that nonsense
 var sentEmails = {};
@@ -48,7 +51,15 @@ exports.handler = function(req, res) {
     if (data.email in sentEmails)
       return respond(res, 400, {error: 'Email already sent to this person'});
 
+    // Keep the hash sane
+    data.hash = data.hash.replace(/\W/g, '').substr(0, 8);
+
+    // Record what we sent
+    db.save(null, {email: data.email, code: data.hash}, function() {});
+
+    // Send the email if mailgun is ready
     if (mg) {
+      console.log('Sending email to ' + data.email);
       var from = 'The Human Preservation Initiative <lab@humanpreservationinitiative.mailgun.org>';
       var subject = 'Your Individual Emotional Imprint code';
       var body =  "Thank you for your participation in our scientific efforts. It's people like you that make our species worth preserving.\n\n";

@@ -1,8 +1,26 @@
-// TODO -- aggregate data somehow
+var nstore = require('nstore');
 
-var fs = require('fs')
-   , path = require('path')
-   ;
+var dbDoCallbacks = [];
+var db = nstore.new('db.nstore', function() {
+  if (!dbDoCallbacks)
+    return;
+  for (var i=0; i<dbDoCallbacks.length; i++)
+    dbDoCallbacks(db);
+  dbDoCallbacks = null;
+});
+var dbDo = function(f) {
+  if (dbDoCallbacks)
+    dbDoCallbacks.push(f);
+  else
+    f(db);
+};
+
+var makeId = function() {
+  var s = (Date.now() % 16).toString(16);
+  for (var i=0; i<7; i++)
+    s = ((Math.random() * 16)|0).toString(16) + s;
+  return s;
+}
 
 var respond = function(res, status, data) {
   data = new Buffer(JSON.stringify(data));
@@ -15,6 +33,23 @@ var respond = function(res, status, data) {
 };
 
 exports.handler = function(req, res) {
+  if (req.method == 'GET') {
+    var id = req.url.split('?key=')[1];
+    if (!id)
+      return respond(res, 400, {error: 'no key'});
+
+    dbDo(function(db) {
+      db.get(id.toLowerCase(), function(err, doc, key) {
+        if (err) {
+          console.log(err.stack || err.message || err);
+          respond(res, 500, {error: err.stack || err.message || err});
+        } else {
+          respond(res, 200, doc);
+        }
+      });
+    });
+  }
+
   if (req.method == 'POST') {
     var data = [];
     req.on('data', function(c) { data.push(c) });
@@ -33,17 +68,17 @@ exports.handler = function(req, res) {
       // TODO
 
       // And save it away
-      saveChunk(data);
-
-      // Respond nicely
-      respond(res, 201, {achievement: 'great success'});
+      dbDo(function(db) {
+        var id = makeId();
+        db.save(id, data, function(err) {
+          if (err)
+            respond(res, 500, {error: err.stack || err.message || err});
+          else
+            respond(res, 201, {id: id});
+        });
+      });
     });
 
-  } else {
-    // Bootstrap aggregate
-    // TODO
-
-    respond(res, 200, {hi: '!'});
   }
 };
 
@@ -56,54 +91,3 @@ var updateAggregate = function(data) {
 
 };
 
-//////////////////////////////////
-// File business
-//////////////////////////////////
-
-// Path to our data file
-var dataPath = path.join('.', 'data.bin');
-
-// Data saving
-var filew = fs.createWriteStream(dataPath, { flags: 'w+'});
-filew.on('open', function(fd) { filew.fd = fd; });
-var chunkCache = [];
-var chunkWriting = false;
-var saveChunk = function(data) {
-  data = new Buffer(JSON.stringify(data));
-  chunkCache.push(data);
-
-  if (!chunkWriting) {
-    var doWrite = function() {
-      chunkWriting = true;
-      var b = new Buffer(4);
-      b.writeInt32LE(chunkCache[0].length, 0);
-      filew.write(b, function() {
-        filew.write(chunkCache.shift(), function() {
-          var cont = function() {
-            if (chunkCache.length)
-              doWrite();
-            else
-              chunkWriting = false;
-          };
-
-          if (filew.fd !== undefined)
-            fs.fsync(filew.fd, cont);
-          else
-            cont();
-        });
-      });
-    };
-    doWrite();
-  }
-};
-
-// Reading
-var readAll = function(visitor) {
-  var file = fs.createReadStream(dataPath);
-  find.on('data', function(c) {
-    // TODO - Parse and stuff
-  });
-
-  // We ignore all other events -- errors and such are
-  // silent.
-};

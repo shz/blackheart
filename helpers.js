@@ -43,7 +43,7 @@ exports.make = function(req, res) {
           'Content-Length': Buffer.byteLength(result, 'utf8')
         });
         res.end(result);
-        console.log(statusCode, req.url, '=>', fileName);
+        console.log(statusCode + ' ' + req.url + '=>' + fileName);
       };
 
       // Attempt to use stored templated

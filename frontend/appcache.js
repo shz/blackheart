@@ -6,8 +6,7 @@ var cache = [ '/'
             , '/create'
             ];
 
-var network = [ '*'
-              , '/data'
+var network = [ '/data'
               , '/email'
               ];
 
@@ -23,7 +22,7 @@ var makeCache = function(callback) {
     c += '# At ' + Date.now() + '\n';
 
     // Add cache part
-    c += '\nCACHE:';
+    c += '\nCACHE:\n';
     c += cache.join('\n');
     c += '\n';
 
@@ -38,8 +37,8 @@ var makeCache = function(callback) {
     c += '\n';
 
     // Add fallback part
-    c += '\nFALLBACK:\n';
-    c += fallback.join('\n');
+    // c += '\nFALLBACK:\n';
+    // c += fallback.join('\n');
 
     callback(undefined, c);
   });

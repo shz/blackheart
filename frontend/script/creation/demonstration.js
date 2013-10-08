@@ -11,23 +11,9 @@ bh.creation.demonstration = function() {
   };
 
   // Data
-  var hash = '';
-  // Generate the SHA1 hash of the user data
-  var words = CryptoJS.SHA1(JSON.stringify(bh.creation.preservedData)).words;
-  for (var i=0; i<words.length; i++) {
-    var n = words[i];
-    if (n < 0)
-      n = 0xFFFFFFFF + n + 1;
-    n = n.toString(16);
-    while (n.length < 8)
-      n = '0' + n;
-    hash += n;
-  }
-  var intensities = [(Math.random() * 6)|0, (Math.random() * 6)|0]; // TODO - actual data
-  var averageIntensity = 0;
-  for (var i=0; i<intensities.length; i++)
-    averageIntensity += intensities[i];
-  averageIntensity /= intensities.length;
+  var hash = bh.hashData(bh.creation.preservedData);
+  var times = bh.calcTimes(bh.creation.preservedData);
+  console.log(times);
 
   var showText = function() {
     $('h1')[0].className += ' visible';
@@ -38,9 +24,6 @@ bh.creation.demonstration = function() {
   };
 
   var showHexagon = function() {
-
-    // Save the data
-    bh.data.save(bh.creation.preservedData);
 
     // Pipe that data into the hexagon generator, and insert the resulting hexagon
     document.querySelector('#demonstration').appendChild(bh.hexagon(hash));
@@ -64,13 +47,13 @@ bh.creation.demonstration = function() {
     }, 4000);
 
     // Show the final form after a time
-    setTimeout(showForm, 7000);
+    setTimeout(showForm, 9000);
   };
 
   var showForm = function() {
     var xhr = null;
 
-    $('form')[0].className += ' visible';
+    $('form')[0].className = 'visible';
     $('form')[0].addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -83,7 +66,7 @@ bh.creation.demonstration = function() {
           leave();
       };
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({email: email, hash: hash}));
+      xhr.send(JSON.stringify({email: email, hash: bh.creation.storedDataId}));
     });
 
     var handler = function() {
@@ -113,5 +96,8 @@ bh.creation.demonstration = function() {
 
   // Go
   setTimeout(showText, 100);
-  return bh.templates.demonstration({hash: hash, avg: averageIntensity});
+  return bh.templates.demonstration({
+    hash: bh.creation.storedDataId || hash.substr(0, 8),
+    timing: times
+  });
 };

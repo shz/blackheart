@@ -16,11 +16,7 @@ bh.creation.intrusion = function() {
       var p = $('#intrusion .first p');
       var o = document.createElement('object');
       o.setAttribute('type', 'image/svg+xml');
-      o.setAttribute('data', '/frontend/image/infinity_path.svg');
-      var parm = document.createElement('params');
-      parm.setAttribute('name', 'src');
-      parm.setAttribute('value', '/frontend/image/infinity_path.svg');
-      o.appendChild(parm);
+      o.setAttribute('data', bh.createInfinityPath());
 
       hex.parentElement.insertBefore(o, hex);
 

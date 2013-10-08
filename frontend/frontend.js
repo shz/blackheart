@@ -48,9 +48,12 @@ var convertContent = function(path, content, callback) {
 var serve = function(res, path) {
   var ext = getExtension(path);
   var contentType = 'application/octet-steam';
+  var expiry = 60 * 10;
+
   switch (ext) {
     case 'png':
       contentType = 'image/png';
+      expiry = 60 * 60;
       break;
     case 'styl':
       contentType =' text/css; charset=utf-8';
@@ -69,12 +72,14 @@ var serve = function(res, path) {
       break;
     case 'otf':
       contentType = 'font/opentype';
+      expiry = 60 * 60 * 24;
       break;
     case 'html':
       contentType = 'text/html; charset=utf-8';
       break;
     case 'mp3':
       contentType = 'audio/mpeg';
+      expiry = 60* 60 * 24;
       break;
   }
 
@@ -83,7 +88,8 @@ var serve = function(res, path) {
     'Accept-Ranges': 'bytes',
     'Content-Type': contentType,
     'Content-Length': content.length,
-    'Content-Range': 'bytes 0-' + content.length + '/' + content.length
+    'Content-Range': 'bytes 0-' + content.length + '/' + content.length,
+    'Cache-Control': 'public, max-age=' + expiry
   });
   res.end(content);
   console.log('200', path);

@@ -3,6 +3,12 @@ bh.creation.completion = function() {
     return document.querySelectorAll('#completion ' + sel);
   };
 
+  // Save the data
+  bh.data.save(bh.creation.preservedData, function(err, id) {
+    if (!err)
+      bh.creation.storedDataId = id;
+  });
+
   var p;
   var object;
   var updateText = function(txt, callback) {
@@ -10,11 +16,6 @@ bh.creation.completion = function() {
       p = $('p')[0];
     if (!object)
       object = $('object')[0];
-
-    // Begin the SVG animation
-    try {
-      object.contentDocument.querySelector('#wind').beginElement();
-    } catch (err) {}
 
     // Let the SVG animation ride out for a bit
     setTimeout(function() {
@@ -53,7 +54,7 @@ bh.creation.completion = function() {
         var p = $('p')[0];
         var o = document.createElement('object');
         o.setAttribute('type', 'image/svg+xml');
-        o.setAttribute('data', '/frontend/image/infinity_path.svg');
+        o.setAttribute('data', bh.createInfinityPath());
         hex.parentElement.insertBefore(o, hex);
 
         o.onload = function() {

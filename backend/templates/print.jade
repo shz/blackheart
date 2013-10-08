@@ -1,0 +1,59 @@
+doctype 5
+// (manifest='/appcache')
+html
+  head
+    title Human Preservation Initiative
+
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
+
+    link(rel='stylesheet', href='/frontend/style/common.styl')
+    link(rel='stylesheet', href='/frontend/style/creation.styl')
+
+    style
+      form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 100;
+        width: 300px;
+        margin-left: -150px;
+        margin-top: -40px;
+      }
+      form input {
+        display: block;
+        width: 300px;
+        padding: 10px 0;
+        font-size: 14pt;
+        text-align: center;
+      }
+      form input[type="submit"] {
+        border: 1px solid black;
+        margin-top: 10px;
+        padding: 20px;
+        cursor: pointer;
+        background-color: #458B00;
+        color: white;
+      }
+
+      #demonstration .bg .footer .logo {
+        background-image: url('/frontend/image/logo-presentation.png');
+      }
+      #demonstration .bg .header .d {
+        background-image: url('/frontend/image/hex-presentation.png');
+      }
+
+    script(src='/frontend/script/lib/sha1.js')
+    script(src='/frontend/script/core.js')
+    script(src='/frontend/script/data.js')
+    script(src='/frontend/script/templating.js')
+    script(src='/frontend/script/hexagon.js')
+    script(src='/frontend/script/hashing.js')
+
+    script(src='/frontend/templates/creation/demonstration.jade')
+
+    script(src='/frontend/script/print.js')
+  body
+    form
+      input(placeholder='enter code here')
+      input(type='submit', value='Print')
+    #demonstration

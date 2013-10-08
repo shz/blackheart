@@ -629,36 +629,41 @@ body > div
       opacity 1
 
     .header
+      position absolute
+      top 20px
+      left 0
+      width 100%
+
       .vert
         position absolute
-        top 20px
-        right 120px
+        top 0
+        right 123px
         width 1px
         height 100px
         background-color black
       .horiz
         position absolute
-        top 70px
+        top 50px
         left 20px
         width 768px - 20px - 20px - 120px
         height 1px
         background-color black
       .a
         position absolute
-        top 50px
+        top 33px
         right 140px
         font-size 12px
         text-transform uppercase
       .b
         text-transform uppercase
         position absolute
-        top 76px
+        top 59px
         right 140px
         font-size 20px
       .c
         position absolute
         right 22px
-        top 130px
+        top 110px
         text-align center
         font-size 10px
       .d
@@ -666,20 +671,57 @@ body > div
         height 100px
         position absolute
         right 20px
-        top 20px
-        background-image url('/frontend/image/hex-presentation.png')
+        top 0
+        background-image url('/frontend/image/hex-presentation-small.png')
         background-size 100%
         color white
         text-align center
-        line-height 100px
+        line-height 110px
         font-size 36px
 
+    .timing
+      > div
+        position absolute
+
+        h2
+          font-size 16px
+          margin 0
+          line-height 1
+          text-transform none
+        h3
+          font-size 12px
+          margin 0
+          line-height 1
+      .a
+        top 334px
+        left 70px
+      .b
+        top 616px
+        left 70px
+      .c
+        top 734px
+        left 340px
+      .d
+        top 616px
+        left 590px
+      .e
+        top 334px
+        left 590px
+      .f
+        top 230px
+        left 340px
+
     .footer
+      position absolute
+      top 910px
+      left 0
+      width 100%
+
       .logo
         position absolute
-        top 920px
+        top 20px
         left 20px
-        background-image url('/frontend/image/logo-presentation.png')
+        background-image url('/frontend/image/logo-presentation-small.png')
         background-repeat no-repeat
         background-size 160px
         width 160px
@@ -688,27 +730,27 @@ body > div
         padding-right 10px
       .top
         position absolute
-        top 900px
+        top 0
         left 20px
         width 768px - 20px - 20px
         height 1px
         background-color black
       .big
         position absolute
-        top 920px
+        top 25px
         left 200px
         text-transform uppercase
         font-size 20px
       .small
         position absolute
-        top 950px
+        top 55px
         left 200px
         font-size 10px
 
   svg
     position absolute
-    top 160px
-    left 435px
+    top 180px
+    left 445px
 
     polygon
       transition all 2s
@@ -836,3 +878,20 @@ body > div
     &.out p
       opacity 0
       transition opacity 0.3s
+
+@media print {
+  #demonstration .bg {
+    .footer {
+      top 890px
+      .logo {
+        background-image url('/frontend/image/logo-presentation.png')
+      }
+    }
+    .header {
+      top 30px
+      .d {
+        background-image url('/frontend/image/hex-presentation.png')
+      }
+    }
+  }
+}
