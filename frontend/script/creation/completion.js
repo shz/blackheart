@@ -12,7 +12,9 @@ bh.creation.completion = function() {
       object = $('object')[0];
 
     // Begin the SVG animation
-    object.contentDocument.querySelector('#wind').beginElement();
+    try {
+      object.contentDocument.querySelector('#wind').beginElement();
+    } catch (err) {}
 
     // Let the SVG animation ride out for a bit
     setTimeout(function() {

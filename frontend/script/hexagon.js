@@ -42,8 +42,16 @@ bh.hexagon = function(hash) {
   // Set proper SVG size
   svg.style.width = ((2 * sectionWidth)|0) + 'px';
   svg.style.height = ((2 * sectionHeight)|0) + 'px';
-  svg.style.WebkitTransform = 'rotate(60deg) scale(0.5)';
-  svg.style.WebkitTransformOrigin = 'left top';
+  svg.style.WebkitTransform =
+  svg.style.MozTransform =
+  svg.style.msTransform =
+  svg.style.OTransform =
+  svg.style.transform = 'rotate(60deg) scale(0.5)';
+  svg.style.WebkitTransformOrigin =
+  svg.style.MozTransformOrigin =
+  svg.style.msTransformOrigin =
+  svg.style.OTransformOrigin =
+  svg.style.transformOrigin = 'left top';
 
   // Color positions
   var colorPositions = [];

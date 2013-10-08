@@ -1,11 +1,43 @@
 orange = rgb(255, 85, 50)
 
+appearance()
+  -webkit-appearance arguments
+  -moz-appearance arguments
+  -ms-appearance arguments
+  -o-appearance arguments
+  appearance arguments
+
 transition()
   -webkit-transition arguments
   -moz-transition arguments
   -ms-transition arguments
   -o-transition arguments
-  transition arguments
+  transition: arguments
+
+transform()
+  -webkit-transform arguments
+  -moz-transform arguments
+  -ms-transform arguments
+  -o-transform arguments
+  transform: arguments
+
+transform-transition(time)
+  -webkit-transition -webkit-transform time
+  -moz-transition -moz-transform time
+  -ms-transition -ms-transform time
+  -o-transition -o-transform time
+  transition: transform time
+
+backface-visibility()
+  -webkit-backface-visibility arguments
+  -moz-backface-visibility arguments
+  -ms-backface-visibility arguments
+  -o-backface-visibility arguments
+  backface-visibility: arguments
+
+
+img
+  border none
 
 body > div
   position absolute
@@ -35,32 +67,32 @@ body > div
 
 @keyframes flip-hex-rotate-front
   0%
-    -webkit-transform rotateY(0deg)
+    transform rotateY(0deg)
     z-index 1
   50%
-    -webkit-transform rotateY(180deg)
+    transform rotateY(180deg)
     z-index 0
   100%
-    -webkit-transform rotateY(360deg)
+    transform rotateY(360deg)
     z-index 1
 
 @keyframes flip-hex-rotate-back
   0%
-    -webkit-transform rotateY(180deg)
+    transform rotateY(180deg)
     z-index 0
   50%
-    -webkit-transform rotateY(360deg)
+    transform rotateY(360deg)
     z-index 1
   100%
-    -webkit-transform rotateY(540deg)
+    transform rotateY(540deg)
     z-index 0
 
 .flip-hex
   position relative
 
   .front, .back
-    -webkit-backface-visibility hidden
-    transition -webkit-transform 0.4s
+    backface-visibility hidden
+    transform-transition 0.4s
     width 100%
     height 100%
     position absolute
@@ -68,21 +100,21 @@ body > div
     left 0
 
   .front
-    -webkit-transform rotateY(0deg)
+    transform rotateY(0deg)
   .back
-    -webkit-transform rotateY(180deg)
+    transform rotateY(180deg)
 
   &.flipped
     .front
-      -webkit-transform rotateY(180deg)
+      transform rotateY(180deg)
     .back
-      -webkit-transform rotateY(360deg)
+      transform rotateY(360deg)
 
   &.animated
     .front
-      -webkit-animation flip-hex-rotate-front 4s ease-in-out infinite
+      animation flip-hex-rotate-front 4s ease-in-out infinite
     .back
-      -webkit-animation flip-hex-rotate-back 4s ease-in-out infinite
+      animation flip-hex-rotate-back 4s ease-in-out infinite
 
 // Section styling
 
@@ -117,7 +149,7 @@ body > div
     background-image url('/frontend/image/hex-opening-white.png')
 
     .back, .front
-      transition -webkit-transform 1.4s
+      transform-transition 1.4s
 
 #intrusion
   transition opacity 1s
@@ -156,15 +188,15 @@ body > div
       position absolute
       top 400px
       left 263px
-      transition -webkit-transform 1s
-      -webkit-transform rotate(-90deg) scale(0)
+      transform-transition 1s
+      transform rotate(-90deg) scale(0)
       z-index 1
 
       &.in
-        -webkit-transform rotate(0) scale(1)
+        transform rotate(0) scale(1)
       &.out
-        transition -webkit-transform 0.8s
-        -webkit-transform rotate(180deg) scale(6)
+        transform-transition 0.8s
+        transform rotate(180deg) scale(6)
       &.gone
         display none
 
@@ -176,7 +208,7 @@ body > div
     p
       transition all 0.4s
       opacity 0
-      -webkit-transform translate3d(0, -20px, 0)
+      transform translate3d(0, -20px, 0)
       color white
       text-transform uppercase
       font-size 11pt
@@ -188,7 +220,7 @@ body > div
 
       &.visible
         opacity 1
-        -webkit-transform translate3d(0, 0, 0)
+        transform translate3d(0, 0, 0)
 
       &.fade
         opacity 0
@@ -210,14 +242,14 @@ body > div
       position absolute
       top 400px
       left 263px
-      transition -webkit-transform 1s
-      -webkit-transform rotate(-90deg) scale(0)
+      transform-transition 1s
+      transform rotate(-90deg) scale(0)
       z-index 1
 
       &.in
-        -webkit-transform rotate(0) scale(1)
+        transform rotate(0) scale(1)
       &.out
-        -webkit-transform rotate(90deg) scale(6)
+        transform rotate(90deg) scale(6)
       &.gone
         display none
 
@@ -240,7 +272,7 @@ body > div
         transition color 0.6s, -webkit-transform 0.6s 1s
         color orange
         // font-size 260px
-        -webkit-transform translateY(-600px)
+        transform translateY(-600px)
 
     .orange-block
       position absolute
@@ -258,18 +290,18 @@ body > div
 
       &.up
         transition -webkit-transform 0.6s, opacity 0.6s 0.6s
-        -webkit-transform translateY(-864px)
+        transform translateY(-864px)
         opacity 0
 
     .text
       position relative
       z-index 4
-      -webkit-transform translateY(900px)
-      transition -webkit-transform 0.6s
+      transform translateY(900px)
+      transform-transition 0.6s
       opacity 1
 
       &.visible
-        -webkit-transform none
+        transform none
 
       &.hidden
         transition opacity 0.6s
@@ -319,13 +351,13 @@ body > div
     line-height 1
     color white
     text-transform none
-    -webkit-transform translateY(-200px)
+    transform translateY(-200px)
     transition -webkit-transform 0.4s, opacity 0.2s
     opacity 0
     font-size 60px
 
     &.visible
-      -webkit-transform none
+      transform none
       opacity 1
 
   .instructions
@@ -392,17 +424,17 @@ body > div
 
     &.regular
       div.s1
-        -webkit-transform rotate(0deg + baserot) translateX(back) scale(-1, 1)
+        transform rotate(0deg + baserot) translateX(back) scale(-1, 1)
       div.s2
-        -webkit-transform rotate(60deg + baserot) translateX(back) scale(-1, 1)
+        transform rotate(60deg + baserot) translateX(back) scale(-1, 1)
       div.s3
-        -webkit-transform rotate(120deg + baserot) translateX(back) scale(-1, 1)
+        transform rotate(120deg + baserot) translateX(back) scale(-1, 1)
       div.s4
-        -webkit-transform rotate(180deg + baserot) translateX(back) scale(-1, 1)
+        transform rotate(180deg + baserot) translateX(back) scale(-1, 1)
       div.s5
-        -webkit-transform rotate(240deg + baserot) translateX(back) scale(-1, 1)
+        transform rotate(240deg + baserot) translateX(back) scale(-1, 1)
       div.s6
-        -webkit-transform rotate(300deg + baserot) translateX(back) scale(-1, 1)
+        transform rotate(300deg + baserot) translateX(back) scale(-1, 1)
 
     div
       width 120px
@@ -418,35 +450,35 @@ body > div
         opacity 0
 
       &.s1
-        -webkit-transform rotate(0deg + baserot) translateX(backstart) scale(-1, 1)
+        transform rotate(0deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.8
         &.done
-          -webkit-transform rotate(0deg + baserot) translateX(back) scale(0)
+          transform rotate(0deg + baserot) translateX(back) scale(0)
       &.s2
-        -webkit-transform rotate(60deg + baserot) translateX(backstart) scale(-1, 1)
+        transform rotate(60deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.9
         &.done
-          -webkit-transform rotate(60deg + baserot) translateX(back) scale(0)
+          transform rotate(60deg + baserot) translateX(back) scale(0)
       &.s3
-        -webkit-transform rotate(120deg + baserot) translateX(backstart) scale(-1, 1)
+        transform rotate(120deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 1
         &.done
-          -webkit-transform rotate(120deg + baserot) translateX(back) scale(0)
+          transform rotate(120deg + baserot) translateX(back) scale(0)
       &.s4
-        -webkit-transform rotate(180deg + baserot) translateX(backstart) scale(-1, 1)
+        transform rotate(180deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.75
         &.done
-          -webkit-transform rotate(180deg + baserot) translateX(back) scale(0)
+          transform rotate(180deg + baserot) translateX(back) scale(0)
       &.s5
-        -webkit-transform rotate(240deg + baserot) translateX(backstart) scale(-1, 1)
+        transform rotate(240deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.6
         &.done
-          -webkit-transform rotate(240deg + baserot) translateX(back) scale(0)
+          transform rotate(240deg + baserot) translateX(back) scale(0)
       &.s6
-        -webkit-transform rotate(300deg + baserot) translateX(backstart) scale(-1, 1)
+        transform rotate(300deg + baserot) translateX(backstart) scale(-1, 1)
         opacity 0.5
         &.done
-          -webkit-transform rotate(300deg + baserot) translateX(back) scale(0)
+          transform rotate(300deg + baserot) translateX(back) scale(0)
 
   .pieces
     z-index 1
@@ -508,11 +540,11 @@ body > div
 
   .selection-header
     border-top 1064px solid orange
-    -webkit-transform translateY(-1064px)
+    transform translateY(-1064px)
 
     &.down
-      -webkit-transform none
-      transition -webkit-transform 0.6s
+      transform none
+      transform-transition 0.6s
 
   object
     position absolute
@@ -527,21 +559,21 @@ body > div
     position absolute
     top 400px
     left 263px
-    transition -webkit-transform 1s
-    -webkit-transform rotate(-90deg) scale(0)
+    transform-transition 1s
+    transform rotate(-90deg) scale(0)
     z-index 1
 
     &.in
-      -webkit-transform rotate(0) scale(1)
+      transform rotate(0) scale(1)
     &.out
-      -webkit-transform rotate(90deg) scale(6)
+      transform rotate(90deg) scale(6)
     &.gone
       display none
 
   p
     transition all 0.4s
     opacity 0
-    -webkit-transform translate3d(0, 20px, 0)
+    transform translate3d(0, 20px, 0)
     color white
     text-transform uppercase
     font-size 11pt
@@ -553,7 +585,7 @@ body > div
 
     &.visible
       opacity 1
-      -webkit-transform translate3d(0, 0, 0)
+      transform translate3d(0, 0, 0)
 
     &.fade
       opacity 0
@@ -567,7 +599,7 @@ body > div
   h1
     text-transform none
     font-size 30px
-    -webkit-transform translateY(40px)
+    transform translateY(40px)
     opacity 0
     text-align center
     position absolute
@@ -576,13 +608,13 @@ body > div
     width 100%
 
     &.visible
-      -webkit-transform none
+      transform none
       opacity 1
       transition all 0.4s
     &.gone
       transition opacity 0.4s, -webkit-transform 0.4s ease-in
       opacity 0
-      -webkit-transform translateY(-100px)
+      transform translateY(-100px)
 
   .bg
     width 100%
@@ -680,15 +712,15 @@ body > div
 
     polygon
       transition all 2s
-      -webkit-transform none
+      transform none
     polygon.nekkid0
-      -webkit-transform rotate(90deg) translate3d(300px, 0, 0) scale(0)
+      transform rotate(90deg) translate3d(300px, 0, 0) scale(0)
     polygon.nekkid1
-      -webkit-transform rotate(90deg) translate3d(0, 300px, 0) scale(0)
+      transform rotate(90deg) translate3d(0, 300px, 0) scale(0)
     polygon.nekkid2
-      -webkit-transform rotate(90deg) translate3d(-300px, 0, 0) scale(0)
+      transform rotate(90deg) translate3d(-300px, 0, 0) scale(0)
     polygon.nekkid3
-      -webkit-transform rotate(90deg) translate3d(0, -300px, 0) scale(0)
+      transform rotate(90deg) translate3d(0, -300px, 0) scale(0)
 
   form
     width 100%
@@ -697,13 +729,13 @@ body > div
     position absolute
     top 0
     left 0
-    -webkit-transform translateY(1024px)
-    transition -webkit-transform 0.6s
+    transform translateY(1024px)
+    transform-transition 0.6s
     z-index 2
     text-align center
 
     &.visible
-      -webkit-transform none
+      transform none
 
     h2
       font-size 36px
@@ -729,7 +761,7 @@ body > div
       color black
       border none
       outline none
-      -webkit-appearance none
+      appearance none
       margin-top 20px
       border-radius 0
 
@@ -741,7 +773,7 @@ body > div
       color white
       text-decoration none
       transition background 1s
-      -webkit-appearance none
+      appearance none
       border none
       font-size 20px
       border-radius 0
@@ -778,15 +810,15 @@ body > div
     position absolute
     top 280px
     left 182px
-    transition -webkit-transform 1s
-    -webkit-transform rotate(-90deg) scale(0)
+    transform-transition 1s
+    transform rotate(-90deg) scale(0)
     z-index 1
 
     &.in
-      -webkit-transform rotate(0) scale(1)
+      transform rotate(0) scale(1)
     &.out
-      transition -webkit-transform 0.8s 0.4s
-      -webkit-transform rotate(180deg) scale(6)
+      transform-transition 0.8s 0.4s
+      transform rotate(180deg) scale(6)
 
     p
       position absolute
