@@ -70,6 +70,8 @@ exports.handler = function(req, res) {
 
       mg.sendText(from, data.email, subject, body, 'humanpreservationinitiative.mailgun.org');
       sentEmails[data.email] = true;
+    } else {
+      console.log('Code for ' + data.email + ': ' + data.hash);
     }
 
     // Respond nicely

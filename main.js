@@ -11,7 +11,7 @@ var http = require('http')
   , helpers = require('./helpers')
   ;
 
-console.log('Blackheart ' + require('./package.json').version);
+console.log('Human Preservation Initiative ' + require('./package.json').version);
 
 // HTTP
 var server = new http.Server();

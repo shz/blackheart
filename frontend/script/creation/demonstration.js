@@ -47,7 +47,7 @@ bh.creation.demonstration = function() {
     }, 4000);
 
     // Show the final form after a time
-    setTimeout(showForm, 9000);
+    //setTimeout(showForm, 9000);
   };
 
   var showForm = function() {

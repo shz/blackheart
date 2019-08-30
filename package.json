@@ -1,17 +1,17 @@
 {
-  "name": "blackheart",
-  "version": "0.0.7",
-  "description": "Art.",
+  "name": "human-preservation-initiative",
+  "version": "1.0.0",
+  "description": "The Human Preservation Initiative",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:shz/blackheart.git"
+    "url": "git@github.com:shz/human-preservation-initiative.git"
   },
   "author": "Patrick Stein <lylepstein@gmail.com>",
-  "license": "Public Domain",
+  "license": "Unlicense",
   "dependencies": {
     "jade": "~0.30.0",
     "stylus": "~0.32.1",
