@@ -1,0 +1,14 @@
+name: Docker Build
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Docker Build
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/shz/human-preservation-initiative:${{ github.sha }}
+    - name: Docker Publish
+      run: docker push docker.pkg.github.com/shz/human-preservation-initiative:${{ github.sha }}
