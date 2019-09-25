@@ -1,5 +1,7 @@
 # Human Preservation Initiative
 
+![](photo.jpg)
+
 # Running
 
 ```bash
