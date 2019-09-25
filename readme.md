@@ -24,6 +24,8 @@ docker build . -t human-preservation-initiative
 docker run -p 8000:8000 -it --rm human-preservation-initiative
 ```
 
+There's also a [prebuilt package](https://github.com/shz/human-preservation-initiative/packages/26950?version=latest).
+
 # License
 
 This is free and unencumbered software released into the public domain.
