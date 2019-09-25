@@ -10,5 +10,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Docker Build
       run: docker build . --file Dockerfile --tag docker.pkg.github.com/shz/human-preservation-initiative:${{ github.sha }}
+    - name: Docker Login
+      run: docker login docker.pkg.github.com -u shz -p ${{ secrets.PACKAGES_TOKEN }}
     - name: Docker Publish
       run: docker push docker.pkg.github.com/shz/human-preservation-initiative:${{ github.sha }}
